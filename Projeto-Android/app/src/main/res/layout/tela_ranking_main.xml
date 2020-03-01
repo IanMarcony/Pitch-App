@@ -18,7 +18,6 @@
         android:clickable="false"
         android:max="100"
         android:progress="0"
-        android:progressDrawable="#66D568"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,7 +58,6 @@
         android:clickable="false"
         android:max="100"
         android:progress="0"
-        android:progressDrawable="#66CAD5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -115,7 +113,6 @@
         android:clickable="false"
         android:max="100"
         android:progress="0"
-        android:progressDrawable="#F74339"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -134,11 +131,19 @@
         android:id="@+id/botao_geral_id"
         android:layout_width="352dp"
         android:layout_height="71dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginTop="87dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="53dp"
         android:background="@drawable/bordar_button"
         android:text="@string/geralTXT"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="607dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/equipe3_progressbar_id3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
