@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Votacao 3AI</string>
+    <string name="loginTXT">ENTRAR</string>
+    <string name="hint_login_txt">MATRÍCULA</string>
+    <string name="votacaoTXT">VOTAÇÃO</string>
+    <string name="submeterTXT">Submeter</string>
+    <string name="addEquipeTXT">Adicionar</string>
+    <string name="rankingTXT">Ranking</string>
+    <string name="lgoutTXT">Sair</string>
 </resources>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <TableLayout
+        android:id="@+id/tabela_elementos_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:background="#B5DD8D">
+
+        <TableRow
+            android:layout_width="440dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/nome_equipe_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1000"
+                android:fontFamily="monospace"
+                android:paddingLeft="30dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="NOME EQUIPE "
+                android:textColor="#43A047"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/votado_check_id"
+                android:layout_width="107dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="130dp"
+                android:layout_weight="1"
+                android:paddingTop="7dp"
+                app:srcCompat="@drawable/sim_votado" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/rate_equipe_id"
+                android:layout_width="209dp"
+                android:layout_height="55dp"
+                app:srcCompat="@drawable/zero_estrelas" />
+
+            <TextView
+                android:id="@+id/valor_investido_equipe_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="R$ 00.00"
+                android:textColor="#43A047"
+                android:textSize="18sp" />
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>
