@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "445245992778",
+    "firebase_url": "https://votacaomobile-3ai.firebaseio.com",
+    "project_id": "votacaomobile-3ai",
+    "storage_bucket": "votacaomobile-3ai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445245992778:android:9e076a8dad0f2eeec51bb3",
+        "android_client_info": {
+          "package_name": "com.example.teste"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445245992778-3l6f6vholu28ft5hmaknkthush1vrdls.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.teste",
+            "certificate_hash": "c3759e046e90073e2f1c368274a2c1a57ea871de"
+          }
+        },
+        {
+          "client_id": "445245992778-ehfgqd1rc27pio8gl82mkfn9gkr39olb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDg3toN25AdI2xVEC_8zrcXarYbqnz0RF8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445245992778-ehfgqd1rc27pio8gl82mkfn9gkr39olb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
