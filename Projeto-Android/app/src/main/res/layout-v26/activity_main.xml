@@ -20,12 +20,11 @@
         android:ems="10"
         android:hint="@string/hint_login_txt"
         android:inputType="textPersonName"
-        android:paddingLeft="15dp"
+        android:paddingStart="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="" tools:targetApi="o"
-        android:paddingStart="15dp" />
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/botao_login_id"

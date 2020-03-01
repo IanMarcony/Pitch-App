@@ -29,6 +29,7 @@ public class TelaVotacaoListaActivity extends Activity {
         equipes = retornarEquipes();
         ArrayAdapter<Equipe> adapter = new EquipeAdpter(getApplicationContext(),equipes);
         listaEquipes.setAdapter(adapter);
+
         positionEquipe=0;
 
         botaoAdicionar=(Button)findViewById(R.id.botao_add_equipe_id);//colocar condição para verificar se é aluno ou professor

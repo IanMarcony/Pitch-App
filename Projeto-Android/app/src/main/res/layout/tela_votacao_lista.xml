@@ -21,6 +21,7 @@
         android:paddingTop="10dp"
         android:text="@string/votacaoTXT"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/lista_equipes_geral_id"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
