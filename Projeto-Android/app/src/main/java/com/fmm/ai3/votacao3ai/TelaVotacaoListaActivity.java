@@ -25,7 +25,7 @@ public class TelaVotacaoListaActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_votacao_lista);
-        listaEquipes =(ListView)findViewById(R.id.lista_equipes_id);
+        listaEquipes =(ListView)findViewById(R.id.lista_equipes_geral_id);
         equipes = retornarEquipes();
         ArrayAdapter<Equipe> adapter = new EquipeAdpter(getApplicationContext(),equipes);
         listaEquipes.setAdapter(adapter);

@@ -10,4 +10,5 @@
     <string name="cadTXT">Cadastrar Equipe</string>
     <string name="nomeEquipeTXT">Nome do Projeto</string>
     <string name="represaTXT">Nome do Líder</string>
+    <string name="geralTXT" >Geral</string>
 </resources>
