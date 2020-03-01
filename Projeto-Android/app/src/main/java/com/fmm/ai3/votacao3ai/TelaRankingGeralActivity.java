@@ -34,7 +34,7 @@ public class TelaRankingGeralActivity extends Activity {
         listaEquipes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(TelaRankingGeralActivity.this,TelaVotarActivity.class);
+                Intent intent = new Intent(TelaRankingGeralActivity.this,TelaRankingVisaoGeralActivity.class);
                 positionEquipe=position;
                 startActivity(intent);
                 return true;
