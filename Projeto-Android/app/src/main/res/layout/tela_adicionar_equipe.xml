@@ -7,4 +7,72 @@
     android:background="@drawable/bg_padrao"
     tools:context=".TelaAdicionarEquipeActivity">
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="89dp"
+        android:layout_marginLeft="89dp"
+        android:layout_marginTop="146dp"
+        android:layout_marginEnd="90dp"
+        android:layout_marginRight="90dp"
+        android:fontFamily="monospace"
+        android:text="@string/cadTXT"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginLeft="106dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginRight="106dp"
+        android:background="@drawable/bordar_edit"
+        android:ems="10"
+        android:hint="@string/nomeEquipeTXT"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginLeft="106dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginRight="106dp"
+        android:background="@drawable/bordar_edit"
+        android:ems="10"
+        android:hint="@string/represaTXT"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginLeft="105dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginRight="106dp"
+        android:background="@drawable/bordar_button"
+        android:text="@string/submeterTXT"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

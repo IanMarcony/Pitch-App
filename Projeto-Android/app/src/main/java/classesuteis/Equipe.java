@@ -4,8 +4,10 @@ import android.app.Activity;
 import com.fmm.ai3.votacao3ai.R;
 
 public class Equipe {
-    private String nome;
+    private String nome, nomeLider;
     private float media;
+    private int positionRanking;
+    private String raInvestidor;
     private float valorInvestido;
     private int numeroVoto;
     private int imagemRate,imagemCheck;
@@ -103,5 +105,21 @@ public class Equipe {
 
     public void setValorInvestido(float valorInvestido) {
         this.valorInvestido = valorInvestido;
+    }
+
+    public int getPositionRanking() {
+        return positionRanking;
+    }
+
+    public void setPositionRanking(int positionRanking) {
+        this.positionRanking = positionRanking;
+    }
+
+    public String getRaInvestidor() {
+        return raInvestidor;
+    }
+
+    public void setRaInvestidor(String raInvestidor) {
+        this.raInvestidor = raInvestidor;
     }
 }

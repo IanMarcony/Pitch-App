@@ -7,4 +7,7 @@
     <string name="addEquipeTXT">Adicionar</string>
     <string name="rankingTXT">Ranking</string>
     <string name="lgoutTXT">Sair</string>
+    <string name="cadTXT">Cadastrar Equipe</string>
+    <string name="nomeEquipeTXT">Nome do Projeto</string>
+    <string name="represaTXT">Nome do Líder</string>
 </resources>
