@@ -23,16 +23,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <EditText
         android:id="@+id/valor_investir_id"
         android:layout_width="156dp"
         android:layout_height="96dp"
         android:layout_marginTop="8dp"
+        android:gravity="center"
         android:background="@drawable/bordar_edit"
-        android:paddingLeft="50dp"
-        android:paddingTop="35dp"
-        android:text="R$ 00.00"
+        android:hint="R$ 100000.00"
+        android:text="R$ 100000.00"
         android:textColor="#43A047"
+        android:textColorHint="#43A047"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
