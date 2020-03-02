@@ -9,7 +9,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import classesuteis.Equipe;
 import classesuteis.EquipeAdpter;
@@ -60,9 +69,6 @@ public class TelaVotacaoListaActivity extends Activity {
         botaoLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                    CRIAR CODE FIREBASE PARA FAZER LOGOUT DA CONTA LOGADA
-                 */
                 Intent intent= new Intent(TelaVotacaoListaActivity.this,MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -88,10 +94,51 @@ public class TelaVotacaoListaActivity extends Activity {
 
 
     public ArrayList<Equipe> retornarEquipes(){
-        ArrayList<Equipe> elementos= new ArrayList<>();
-    /*
-        RECUPERAR EQUIPES DO FIREBASE - TODO CODE
-     */
+        final ArrayList<Equipe> elementos= new ArrayList<>();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference equipesReference=databaseReference.child("Equipes");
+
+        equipesReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Iterator<DataSnapshot> it=dataSnapshot.getChildren().iterator();
+                int i=1;
+                while(it.hasNext()){
+                    String nome_t=it.next().child("Equipe"+i).child("nome").getValue().toString();
+                    String nome_lider=it.next().child("Equipe"+i).child("nomeLider").getValue().toString();
+                    float media=Float.parseFloat(it.next().child("Equipe"+i).child("media").getValue().toString());
+                    float valor_investido_t=Float.parseFloat(it.next().child("Equipe"+i).child("valorInvestido").getValue().toString());
+                    int check_t=Integer.parseInt(it.next().child("Equipe"+i).child("imagemCheck").getValue().toString());
+
+                    Equipe equipe= new Equipe();
+
+                    equipe.setNome(nome_t);
+                    equipe.setNomeLider(nome_lider);
+                    equipe.setImagemCheck(check_t);
+                    equipe.setValorInvestido(valor_investido_t);
+                    equipe.setMedia(media);
+
+                    elementos.add(equipe);
+
+
+
+                }
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+
         return elementos;
     }
 }

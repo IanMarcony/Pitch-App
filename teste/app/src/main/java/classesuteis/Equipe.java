@@ -11,6 +11,16 @@ public class Equipe {
     private int numeroVoto;
     private int imagemRate,imagemCheck;
 
+    public Equipe(String nome, String nomeLider, float media, int positionRanking, String raInvestidor, float valorInvestido, int numeroVoto) {
+        this.nome = nome;
+        this.nomeLider = nomeLider;
+        this.media = media;
+        this.positionRanking = positionRanking;
+        this.raInvestidor = raInvestidor;
+        this.valorInvestido = valorInvestido;
+        this.numeroVoto = numeroVoto;
+    }
+
     public Equipe(String nome, float media, int numeroVoto) {
         this.nome = nome;
         this.media = media;
@@ -32,6 +42,13 @@ public class Equipe {
         this.numeroVoto = 0;
     }
 
+    public String getNomeLider() {
+        return nomeLider;
+    }
+
+    public void setNomeLider(String nomeLider) {
+        this.nomeLider = nomeLider;
+    }
 
     public String getNome() {
         return nome;

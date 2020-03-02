@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,6 +28,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         raField=(TextView)findViewById(R.id.ra_aluno_id);
         botaoLogin=(Button)findViewById(R.id.botao_login_id);
 
@@ -42,38 +45,38 @@ public class MainActivity extends Activity {
                 usuariosReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        int i=1;
-                        boolean achou=false;
 
 
 
-                        while(achou!=true){
+
+                        for(int i=1;i<38;i++)
                             if(dataSnapshot.child("Aluno"+i).child("RA").getValue().toString().equals(user.getRa())){
 
                                 String ra_t=dataSnapshot.child("Aluno"+i).child("RA").getValue().toString();
                                 float saldo_t=Float.parseFloat(dataSnapshot.child("Aluno"+i).child("Saldo").getValue().toString());
-                                int voto_t=Integer.parseInt(dataSnapshot.child("Aluno"+i).child("Voto").getValue().toString());
+
 
                                 user.setSaldo(saldo_t);
-                                user.setVoto(voto_t);
                                 user.setLogado(true);
-                                achou=true;
+                                if(user.isLogado()) {
+                                    Toast.makeText(getApplicationContext(), "Acesso liberado", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(MainActivity.this, TelaVotacaoListaActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                                break;
                             }
 
-                            i++;
+
                         }
-                    }
+
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
 
                     }
                 });
-                if(user.isLogado()) {
-                    Intent intent = new Intent(MainActivity.this, TelaVotacaoListaActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
+
             }
         });
 
