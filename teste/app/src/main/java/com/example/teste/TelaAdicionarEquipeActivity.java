@@ -15,6 +15,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Iterator;
+
 import classesuteis.Equipe;
 
 public class TelaAdicionarEquipeActivity extends Activity {
@@ -39,7 +41,11 @@ public class TelaAdicionarEquipeActivity extends Activity {
                 databaseReference.child("Equipes").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        qEquipes= (int)dataSnapshot.getChildrenCount();
+                        Iterator<DataSnapshot> it=dataSnapshot.getChildren().iterator();
+                        qEquipes=0;
+                        while(it.hasNext()){
+                            qEquipes++;
+                        }
 
                     }
 

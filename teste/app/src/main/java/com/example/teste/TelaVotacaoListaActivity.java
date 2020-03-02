@@ -25,8 +25,8 @@ import classesuteis.EquipeAdpter;
 
 public class TelaVotacaoListaActivity extends Activity {
     private ListView listaEquipes;
-    public static ArrayList<Equipe> equipes;
-    public static int positionEquipe;
+    public  ArrayList<Equipe> equipes;
+    public  int positionEquipe;
 
     private Button botaoAdicionar,botaoRanking,botaoLogout;
     @Override
@@ -34,7 +34,7 @@ public class TelaVotacaoListaActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_votacao_lista);
         listaEquipes =(ListView)findViewById(R.id.lista_equipes_geral_id);
-        equipes = retornarEquipes();
+        retornarEquipes();
         ArrayAdapter<Equipe> adapter = new EquipeAdpter(getApplicationContext(),equipes);
         listaEquipes.setAdapter(adapter);
 
@@ -62,6 +62,7 @@ public class TelaVotacaoListaActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(TelaVotacaoListaActivity.this,TelaRankingMainActivity.class);
+                intent.putExtra("Equipes",equipes);
                 startActivity(intent);
             }
         });
@@ -81,7 +82,9 @@ public class TelaVotacaoListaActivity extends Activity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(TelaVotacaoListaActivity.this,TelaVotarActivity.class);
-                positionEquipe=position;
+
+                intent.putExtra("Equipes",equipes);
+                intent.putExtra("Posicao",position);
                 startActivity(intent);
                 return true;
             }
@@ -93,11 +96,11 @@ public class TelaVotacaoListaActivity extends Activity {
     }
 
 
-    public ArrayList<Equipe> retornarEquipes(){
+    public void retornarEquipes(){
         final ArrayList<Equipe> elementos= new ArrayList<>();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         DatabaseReference equipesReference=databaseReference.child("Equipes");
-/*
+
         equipesReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -109,22 +112,23 @@ public class TelaVotacaoListaActivity extends Activity {
                     float media=Float.parseFloat(it.next().child("Equipe"+i).child("media").getValue().toString());
                     float valor_investido_t=Float.parseFloat(it.next().child("Equipe"+i).child("valorInvestido").getValue().toString());
                     int check_t=Integer.parseInt(it.next().child("Equipe"+i).child("imagemCheck").getValue().toString());
-
+                    int estrelas_t=Integer.parseInt(it.next().child("Equipe"+i).child("imagemRate").getValue().toString());
                     Equipe equipe= new Equipe();
 
                     equipe.setNome(nome_t);
                     equipe.setNomeLider(nome_lider);
                     equipe.setImagemCheck(check_t);
+                    equipe.setImagemRate(estrelas_t);
                     equipe.setValorInvestido(valor_investido_t);
                     equipe.setMedia(media);
 
                     elementos.add(equipe);
 
 
-
+            i++;
                 }
 
-
+                equipes=elementos;
 
 
             }
@@ -137,8 +141,8 @@ public class TelaVotacaoListaActivity extends Activity {
 
 
 
-*/
 
-        return elementos;
+
+
     }
 }
