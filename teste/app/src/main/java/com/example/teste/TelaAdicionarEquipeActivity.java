@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,6 +26,7 @@ public class TelaAdicionarEquipeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_adicionar_equipe);
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
 
         nomeProjeto=(TextView)findViewById(R.id.nome_projeto_id);
         nomeLider=(TextView)findViewById(R.id.nome_lider_id);
