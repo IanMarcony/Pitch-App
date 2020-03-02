@@ -7,6 +7,7 @@ public class Equipe {
     private float media;
     private int positionRanking;
     private String raInvestidor;
+    private float maiorInvestimento;
     private float valorInvestido;
     private int numeroVoto;
     private int imagemRate,imagemCheck;
@@ -81,7 +82,7 @@ public class Equipe {
     public void setImagemRate(int imagemRate) {
        switch (imagemRate){
            case 0: this.imagemRate= R.drawable.zero_estrelas;
-           break;
+               break;
            case 1: this.imagemRate= R.drawable.uma_estrelas;
                break;
            case 2: this.imagemRate= R.drawable.duas_estrelas;
@@ -92,8 +93,9 @@ public class Equipe {
                break;
            case 5: this.imagemRate= R.drawable.cinco_estrelas;
                break;
-               default:this.imagemRate= R.drawable.zero_estrelas;
-                   break;
+
+           default:this.imagemRate= R.drawable.zero_estrelas;
+               break;
 
        }
 
@@ -123,6 +125,17 @@ public class Equipe {
         this.valorInvestido = valorInvestido;
     }
 
+    public void giveDonation(String raInvestidor, float donation){
+        float maiorDonation = getMaiorInvestimento();
+
+        if(donation>maiorDonation){
+            setRaInvestidor(raInvestidor);
+            setMaiorInvestimento(donation);
+        }
+
+        setValorInvestido(getValorInvestido()+donation);
+    }
+
     public int getPositionRanking() {
         return positionRanking;
     }
@@ -137,5 +150,13 @@ public class Equipe {
 
     public void setRaInvestidor(String raInvestidor) {
         this.raInvestidor = raInvestidor;
+    }
+
+    public float getMaiorInvestimento() {
+        return maiorInvestimento;
+    }
+
+    public void setMaiorInvestimento(float maiorInvestimento) {
+        this.maiorInvestimento = maiorInvestimento;
     }
 }
