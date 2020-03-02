@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import com.google.firebase.database.DataSnapshot;
@@ -18,6 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Iterator;
+
 import classesuteis.Usuario;
 
 
@@ -25,6 +28,7 @@ public class MainActivity extends Activity {
     private TextView raField;
     private Button botaoLogin;
     public static Usuario user;
+    private int qEquipes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,24 @@ public class MainActivity extends Activity {
 
         raField=(TextView)findViewById(R.id.ra_aluno_id);
         botaoLogin=(Button)findViewById(R.id.botao_login_id);
+        qEquipes=0;
+        DatabaseReference equipesReference = FirebaseDatabase.getInstance().getReference("Equipes");
+        equipesReference.child("Equipes").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Iterator<DataSnapshot> it=dataSnapshot.getChildren().iterator();
+
+                while(it.hasNext()){
+                    qEquipes++;
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         botaoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,8 +76,9 @@ public class MainActivity extends Activity {
 
                                 String ra_t=dataSnapshot.child("Aluno"+i).child("RA").getValue().toString();
                                 float saldo_t=Float.parseFloat(dataSnapshot.child("Aluno"+i).child("Saldo").getValue().toString());
-
-
+                              //  for(int i =1;i<=qEquipes;i++){
+                                    //usuariosReference.child("Aluno"+i).
+                               // }
                                 user.setSaldo(saldo_t);
                                 user.setLogado(true);
                                 hasFound = true;

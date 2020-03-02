@@ -1,18 +1,21 @@
 package classesuteis;
 
+import java.util.List;
+
 public class Usuario {
     private String ra;
+    private int posicao;
     private float saldo;
-    private int voto;
+    private List<Integer> votos;
     private boolean logado;
 
     public Usuario() {
     }
 
-    public Usuario(String ra, float saldo, int voto) {
+    public Usuario(String ra, float saldo, List<Integer> votos) {
         this.ra = ra;
         this.saldo = saldo;
-        this.voto = voto;
+        this.votos = votos;
     }
 
     public String getRa() {
@@ -31,12 +34,12 @@ public class Usuario {
         this.saldo = saldo;
     }
 
-    public int getVoto() {
-        return voto;
+    public List<Integer> getVotos() {
+        return votos;
     }
 
-    public void setVoto(int voto) {
-        this.voto = voto;
+    public void setVotos(int voto,int index) {
+        this.votos.set(index,voto);
     }
 
     public boolean isLogado() {
