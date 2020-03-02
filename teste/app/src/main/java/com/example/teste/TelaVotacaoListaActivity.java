@@ -97,7 +97,7 @@ public class TelaVotacaoListaActivity extends Activity {
         final ArrayList<Equipe> elementos= new ArrayList<>();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         DatabaseReference equipesReference=databaseReference.child("Equipes");
-
+/*
         equipesReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -137,7 +137,7 @@ public class TelaVotacaoListaActivity extends Activity {
 
 
 
-
+*/
 
         return elementos;
     }
