@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +30,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+    getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
 
         raField=(TextView)findViewById(R.id.ra_aluno_id);
         botaoLogin=(Button)findViewById(R.id.botao_login_id);

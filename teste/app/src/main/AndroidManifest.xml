@@ -9,6 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".TelaAdicionarEquipeActivity"/>
+        <activity android:name=".TelaVotacaoListaActivity"/>
+        <activity android:name=".TelaRankingGeralActivity"/>
+        <activity android:name=".TelaRankingMainActivity"/>
+        <activity android:name=".TelaRankingVisaoGeralActivity"/>
+        <activity android:name=".TelaVotarActivity"/>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
