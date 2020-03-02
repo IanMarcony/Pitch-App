@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,6 +34,8 @@ public class TelaVotacaoListaActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_votacao_lista);
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
+
         listaEquipes =(ListView)findViewById(R.id.lista_equipes_geral_id);
         retornarEquipes();
         ArrayAdapter<Equipe> adapter = new EquipeAdpter(getApplicationContext(),equipes);

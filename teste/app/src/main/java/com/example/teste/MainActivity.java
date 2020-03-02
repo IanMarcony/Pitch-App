@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
 
         raField=(TextView)findViewById(R.id.ra_aluno_id);
         botaoLogin=(Button)findViewById(R.id.botao_login_id);
@@ -69,20 +69,19 @@ public class MainActivity extends Activity {
                 usuariosReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-
+                        boolean hasFound = false;
 
                         for(int i=1;i<38;i++)
                             if(dataSnapshot.child("Aluno"+i).child("RA").getValue().toString().equals(user.getRa())){
 
                                 String ra_t=dataSnapshot.child("Aluno"+i).child("RA").getValue().toString();
                                 float saldo_t=Float.parseFloat(dataSnapshot.child("Aluno"+i).child("Saldo").getValue().toString());
-                                for(int i =1;i<=qEquipes;i++){
+                              //  for(int i =1;i<=qEquipes;i++){
                                     //usuariosReference.child("Aluno"+i).
-                                }
+                               // }
                                 user.setSaldo(saldo_t);
                                 user.setLogado(true);
+                                hasFound = true;
                                 if(user.isLogado()) {
                                     Toast.makeText(getApplicationContext(), "Acesso liberado", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(MainActivity.this, TelaVotacaoListaActivity.class);
@@ -92,9 +91,10 @@ public class MainActivity extends Activity {
                                 break;
                             }
 
-
+                            if (!hasFound){
+                                Toast.makeText(getApplicationContext(),"Acesso negado!\nVerifique se o RA foi escrito corretamente",Toast.LENGTH_SHORT).show();
+                            }
                         }
-
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
