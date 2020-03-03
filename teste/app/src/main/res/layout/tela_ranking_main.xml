@@ -9,15 +9,15 @@
 
     <ProgressBar
         android:id="@+id/equipe2_progressbar_id"
-        style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
+        style="?android:progressBarStyleHorizontal"
         android:layout_width="121dp"
         android:layout_height="136dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="240dp"
         android:clickable="false"
         android:max="100"
         android:progress="0"
+        android:progressDrawable="@drawable/circle_progressbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,7 +32,7 @@
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.176"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/equipe2_progressbar_id"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,13 +43,14 @@
         android:text="@string/_0_perc"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/textView5"
-        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintHorizontal_bias="0.359"
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <ProgressBar
         android:id="@+id/equipe1_progressbar_id2"
-        style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
+        style="?android:progressBarStyleHorizontal"
+        android:progress="0"
         android:layout_width="121dp"
         android:layout_height="136dp"
         android:layout_marginStart="184dp"
@@ -57,9 +58,9 @@
         android:layout_marginTop="104dp"
         android:clickable="false"
         android:max="100"
-        android:progress="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:progressDrawable="@drawable/circle_progressbar"/>
 
     <TextView
         android:id="@+id/textView8"
@@ -68,7 +69,7 @@
         android:text="@string/_0_perc"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/textView7"
-        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintHorizontal_bias="0.549"
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -83,8 +84,23 @@
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.889"
+        app:layout_constraintHorizontal_bias="0.534"
         app:layout_constraintStart_toStartOf="@+id/equipe2_progressbar_id"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/equipe3_progressbar_id3"
+        style="?android:progressBarStyleHorizontal"
+        android:progress="0"
+        android:progressDrawable="@drawable/circle_progressbar"
+        android:layout_width="121dp"
+        android:layout_height="136dp"
+        android:layout_marginStart="192dp"
+        android:layout_marginLeft="192dp"
+        android:layout_marginTop="384dp"
+        android:clickable="false"
+        android:max="100"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -98,22 +114,8 @@
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.929"
+        app:layout_constraintHorizontal_bias="0.623"
         app:layout_constraintStart_toStartOf="@+id/equipe2_progressbar_id"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ProgressBar
-        android:id="@+id/equipe3_progressbar_id3"
-        style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
-        android:layout_width="121dp"
-        android:layout_height="136dp"
-        android:layout_marginStart="192dp"
-        android:layout_marginLeft="192dp"
-        android:layout_marginTop="384dp"
-        android:clickable="false"
-        android:max="100"
-        android:progress="0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -123,7 +125,7 @@
         android:text="@string/_0_perc"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/textView9"
-        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
