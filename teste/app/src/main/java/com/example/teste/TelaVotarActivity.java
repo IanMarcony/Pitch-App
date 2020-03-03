@@ -1,12 +1,17 @@
 package com.example.teste;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
@@ -24,6 +29,8 @@ public class TelaVotarActivity extends Activity {
     private Button btDecrease,btIncrement,btSubmit;
     private SeekBar rateBar;
     private ImageView stars;
+    private TextView teamName;
+    private EditText etValue;
 
     private float saldo, value;
     private int idEquipe,rate;
@@ -42,6 +49,8 @@ public class TelaVotarActivity extends Activity {
         btIncrement = findViewById(R.id.botao_acrescentar_id);
         btSubmit = findViewById(R.id.botao_submeter_voto_id);
 
+        teamName = findViewById(R.id.textView);
+
         stars = findViewById(R.id.rate_equipe_ind_id);
 
         rateBar = findViewById(R.id.rate_voto_id);
@@ -56,25 +65,45 @@ public class TelaVotarActivity extends Activity {
         idEquipe = intent.getIntExtra("Posicao",0);
 
         equipe = (Equipe) equipeArray.get(idEquipe);
+        teamName.setText(equipe.getNome());
 
         actions();
     }
 
     public void actions(){
+        etValue.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            @SuppressLint("SetTextI18n")
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                value = Float.parseFloat(etValue.getText().toString());
+                etValue.setText("R$ "+value);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
         btDecrease.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 if(!(value<=0)){
                     value -= 100f;
+                    etValue.setText("R$ "+value);
                 }
             }
         });
 
         btIncrement.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 if(!(value>=saldo)){
                     value += 100f;
+                    etValue.setText("R$ "+value);
                 }
             }
         });
