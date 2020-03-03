@@ -92,18 +92,6 @@ public class TelaVotacaoListaActivity extends Activity {
             }
         });
 
-//        listaEquipes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(TelaVotacaoListaActivity.this,TelaVotarActivity.class);
-//
-//                intent.putExtra("Equipes",equipes);
-//                intent.putExtra("Posicao",position);
-//                startActivity(intent);
-//                return true;
-//            }
-//        });
-
         positionEquipe=0;
 
         botaoAdicionar=(Button)findViewById(R.id.botao_add_equipe_id);//colocar condição para verificar se é aluno ou professor

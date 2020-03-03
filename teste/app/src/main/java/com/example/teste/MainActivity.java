@@ -52,8 +52,6 @@ public class MainActivity extends Activity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         boolean hasFound = false;
-
-<<<<<<< HEAD
                         for(int i=1;i<=37;i++){
 
                             if(dataSnapshot.child("Aluno"+i).child("RA").getValue().toString().equals(user.getRa())){
@@ -66,21 +64,6 @@ public class MainActivity extends Activity {
                                     Intent intent = new Intent(MainActivity.this, TelaVotacaoListaActivity.class);
                                     startActivity(intent);
                                     finish();
-=======
-                        for(DataSnapshot dados: dataSnapshot.getChildren()){
-                            if(dados.child("RA").getValue()!=null){
-                                if(dados.child("RA").getValue().toString().equals(user.getRa())){
-                                    user = dados.getValue(Usuario.class);
-                                    user.setLogado(true);
-                                    hasFound = true;
-                                    if(user.isLogado()) {
-                                        Toast.makeText(getApplicationContext(), "Acesso liberado", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(MainActivity.this, TelaVotacaoListaActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                    }
-                                    break;
->>>>>>> 84e6a96253e4203de134a17ac8cd02cd3afb4031
                                 }
                             }
                         }
