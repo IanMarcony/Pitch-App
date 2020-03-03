@@ -28,13 +28,13 @@
         android:layout_width="156dp"
         android:layout_height="96dp"
         android:layout_marginTop="8dp"
-        android:gravity="center"
         android:background="@drawable/bordar_edit"
-        android:hint="R$ 100000.00"
-        android:text="R$ 100000.00"
+        android:gravity="center"
+        android:hint=" 100000.00"
+        android:inputType="number"
+        android:text=" 100000.00"
         android:textColor="#43A047"
         android:textColorHint="#43A047"
-        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -119,4 +119,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rate_voto_id" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="104dp"
+        android:text="R$"
+        android:textColor="#43A047"
+        app:layout_constraintBottom_toBottomOf="@+id/valor_investir_id"
+        app:layout_constraintEnd_toEndOf="@+id/valor_investir_id"
+        app:layout_constraintHorizontal_bias="0.615"
+        app:layout_constraintStart_toEndOf="@+id/botao_decrementar_id"
+        app:layout_constraintTop_toTopOf="@+id/valor_investir_id" />
 </androidx.constraintlayout.widget.ConstraintLayout>

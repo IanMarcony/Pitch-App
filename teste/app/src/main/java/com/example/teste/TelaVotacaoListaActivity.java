@@ -26,17 +26,19 @@ import java.util.Iterator;
 
 import classesuteis.Equipe;
 import classesuteis.EquipeAdpter;
+import classesuteis.Usuario;
 
 public class TelaVotacaoListaActivity extends Activity {
     private ListView listaEquipes;
     public  static ArrayList<Equipe> equipes;
     public  static int positionEquipe;
+    public static Usuario user_aux=MainActivity.user;
 
     private Button botaoAdicionar,botaoRanking,botaoLogout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println("RA: "+MainActivity.user.getRa());
+        System.out.println("RA: "+user_aux.getRa());
         setContentView(R.layout.tela_votacao_lista);
         getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
 
@@ -70,7 +72,7 @@ public class TelaVotacaoListaActivity extends Activity {
                 DatabaseReference usuariosReference = databaseReference_aux.child("Alunos");
 
                 for(int j =1;j<=i;j++) {
-                    usuariosReference.child("Aluno" + MainActivity.user.getPosicao()).child("Votos").child("Voto" + j).setValue(0);
+                    usuariosReference.child("Aluno" +user_aux.getPosicao()).child("Votos").child("Voto" + j).setValue(0);
                 }
 
             }

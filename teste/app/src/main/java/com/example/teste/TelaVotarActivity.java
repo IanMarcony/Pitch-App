@@ -48,7 +48,7 @@ public class TelaVotarActivity extends Activity {
         btDecrease = findViewById(R.id.botao_decrementar_id);
         btIncrement = findViewById(R.id.botao_acrescentar_id);
         btSubmit = findViewById(R.id.botao_submeter_voto_id);
-
+        etValue=findViewById(R.id.valor_investir_id);
         teamName = findViewById(R.id.textView);
 
         stars = findViewById(R.id.rate_equipe_ind_id);
@@ -79,7 +79,7 @@ public class TelaVotarActivity extends Activity {
             @SuppressLint("SetTextI18n")
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 value = Float.parseFloat(etValue.getText().toString());
-                etValue.setText("R$ "+value);
+                etValue.setText(""+value);
             }
 
             @Override
@@ -92,7 +92,7 @@ public class TelaVotarActivity extends Activity {
             public void onClick(View v) {
                 if(!(value<=0)){
                     value -= 100f;
-                    etValue.setText("R$ "+value);
+                    etValue.setText(""+value);
                 }
             }
         });
@@ -103,7 +103,7 @@ public class TelaVotarActivity extends Activity {
             public void onClick(View v) {
                 if(!(value>=saldo)){
                     value += 100f;
-                    etValue.setText("R$ "+value);
+                    etValue.setText(""+value);
                 }
             }
         });
