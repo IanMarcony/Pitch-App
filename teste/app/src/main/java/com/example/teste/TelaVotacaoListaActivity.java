@@ -3,6 +3,8 @@ package com.example.teste;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -37,6 +39,7 @@ public class TelaVotacaoListaActivity extends Activity {
         setContentView(R.layout.tela_votacao_lista);
         getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
 
+        listaEquipes = findViewById(R.id.lista_equipes_geral_id);
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         DatabaseReference equipesReference=databaseReference.child("Equipes");
@@ -45,7 +48,7 @@ public class TelaVotacaoListaActivity extends Activity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 System.out.println("Entrou na função para pegar do banco");
-                listaEquipes =(ListView)findViewById(R.id.lista_equipes_geral_id);
+
                 int i=0;
                 equipes = new ArrayList<Equipe>();
                 for(DataSnapshot dados: dataSnapshot.getChildren()){
@@ -57,20 +60,10 @@ public class TelaVotacaoListaActivity extends Activity {
 
                     i++;
                 }
+
                 ArrayAdapter<Equipe> adapter = new EquipeAdpter(getApplicationContext(),equipes);
                 listaEquipes.setAdapter(adapter);
-                listaEquipes.setLongClickable(true);
-                listaEquipes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                    @Override
-                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent intent = new Intent(TelaVotacaoListaActivity.this,TelaVotarActivity.class);
 
-                        intent.putExtra("Equipes",equipes);
-                        intent.putExtra("Posicao",position);
-                        startActivity(intent);
-                        return true;
-                    }
-                });
                 System.out.println("Finalizou oesquisa no bacpesqui");
                 DatabaseReference databaseReference_aux = FirebaseDatabase.getInstance().getReference();
                 DatabaseReference usuariosReference = databaseReference_aux.child("Alunos");
@@ -87,8 +80,29 @@ public class TelaVotacaoListaActivity extends Activity {
             }
         });
 
+        listaEquipes.setLongClickable(true);
+        listaEquipes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(TelaVotacaoListaActivity.this,TelaVotarActivity.class);
 
+                intent.putExtra("Equipes",equipes);
+                intent.putExtra("Posicao",position);
+                startActivity(intent);
+            }
+        });
 
+//        listaEquipes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(TelaVotacaoListaActivity.this,TelaVotarActivity.class);
+//
+//                intent.putExtra("Equipes",equipes);
+//                intent.putExtra("Posicao",position);
+//                startActivity(intent);
+//                return true;
+//            }
+//        });
 
         positionEquipe=0;
 
