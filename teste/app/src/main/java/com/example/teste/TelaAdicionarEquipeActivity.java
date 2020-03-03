@@ -45,7 +45,7 @@ public class TelaAdicionarEquipeActivity extends Activity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Iterator<DataSnapshot> it=dataSnapshot.getChildren().iterator();
                         qEquipes=0;
-                        while(it.hasNext()){
+                        for(DataSnapshot dados: dataSnapshot.getChildren()){
                             qEquipes++;
                         }
                         System.out.println("Quantidade de Equipes: "+qEquipes);

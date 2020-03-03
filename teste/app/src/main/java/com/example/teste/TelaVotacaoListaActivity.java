@@ -48,7 +48,7 @@ public class TelaVotacaoListaActivity extends Activity {
                 listaEquipes =(ListView)findViewById(R.id.lista_equipes_geral_id);
                 int i=0;
                 for(DataSnapshot dados: dataSnapshot.getChildren()){
-                   Equipe equipe = dados.getValue(Equipe.class);
+                    Equipe equipe = dados.getValue(Equipe.class);
 
                     equipes.add(equipe);
 

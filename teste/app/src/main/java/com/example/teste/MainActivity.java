@@ -71,13 +71,9 @@ public class MainActivity extends Activity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         boolean hasFound = false;
 
-                        for(int i=1;i<38;i++)
-                            if(dataSnapshot.child("Aluno"+i).child("RA").getValue().toString().equals(user.getRa())){
-
-                                String ra_t=dataSnapshot.child("Aluno"+i).child("RA").getValue().toString();
-                                float saldo_t=Float.parseFloat(dataSnapshot.child("Aluno"+i).child("Saldo").getValue().toString());
-                              user.setPosicao(i);
-                                user.setSaldo(saldo_t);
+                        for(DataSnapshot dados: dataSnapshot.getChildren()){
+                            if(dados.child("RA").getValue().toString().equals(user.getRa())){
+                                user = dados.getValue(Usuario.class);
                                 user.setLogado(true);
                                 hasFound = true;
                                 if(user.isLogado()) {
@@ -88,6 +84,8 @@ public class MainActivity extends Activity {
                                 }
                                 break;
                             }
+                        }
+
 
                             if (!hasFound){
                                 Toast.makeText(getApplicationContext(),"Acesso negado!\nVerifique se o RA foi escrito corretamente",Toast.LENGTH_SHORT).show();
