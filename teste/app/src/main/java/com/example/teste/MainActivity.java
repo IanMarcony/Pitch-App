@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
     private TextView raField;
     private Button botaoLogin;
     public static Usuario user;
-    private int qEquipes;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,25 +38,7 @@ public class MainActivity extends Activity {
 
         raField=(TextView)findViewById(R.id.ra_aluno_id);
         botaoLogin=(Button)findViewById(R.id.botao_login_id);
-        qEquipes=0;
-        DatabaseReference equipesReference = FirebaseDatabase.getInstance().getReference("Equipes");
-        equipesReference.child("Equipes").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Iterator<DataSnapshot> it=dataSnapshot.getChildren().iterator();
 
-                while(it.hasNext()){
-                    qEquipes++;
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        System.out.println("Quantidade de equipes: "+qEquipes);
         botaoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,16 +46,18 @@ public class MainActivity extends Activity {
                 user = new Usuario();
                 user.setRa(raField.getText().toString());
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();//Aponta pro Banco de dados
-                final DatabaseReference usuariosReference = databaseReference.child("Alunos");
+                 DatabaseReference usuariosReference = databaseReference.child("Alunos");
 
                 usuariosReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         boolean hasFound = false;
 
-                        for(DataSnapshot dados: dataSnapshot.getChildren()){
-                            if(dados.child("RA").getValue().toString().equals(user.getRa())){
-                                user = dados.getValue(Usuario.class);
+                        for(int i=1;i<=37;i++){
+
+                            if(dataSnapshot.child("Aluno"+i).child("RA").getValue().toString().equals(user.getRa())){
+                                user.setSaldo(Float.parseFloat(dataSnapshot.child("Aluno"+i).child("RA").getValue().toString()));
+                                user.setPosicao(i);
                                 user.setLogado(true);
                                 hasFound = true;
                                 if(user.isLogado()) {

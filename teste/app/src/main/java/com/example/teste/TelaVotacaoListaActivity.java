@@ -57,18 +57,6 @@ public class TelaVotacaoListaActivity extends Activity {
                 }
                 ArrayAdapter<Equipe> adapter = new EquipeAdpter(getApplicationContext(),equipes);
                 listaEquipes.setAdapter(adapter);
-                listaEquipes.setLongClickable(true);
-                listaEquipes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                    @Override
-                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent intent = new Intent(TelaVotacaoListaActivity.this,TelaVotarActivity.class);
-
-                        intent.putExtra("Equipes",equipes);
-                        intent.putExtra("Posicao",position);
-                        startActivity(intent);
-                        return true;
-                    }
-                });
                 System.out.println("Finalizou oesquisa no bacpesqui");
                 DatabaseReference databaseReference_aux = FirebaseDatabase.getInstance().getReference();
                 DatabaseReference usuariosReference = databaseReference_aux.child("Alunos");
