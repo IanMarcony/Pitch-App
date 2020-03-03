@@ -63,7 +63,7 @@ public class MainActivity extends Activity {
                                     Toast.makeText(getApplicationContext(), "Acesso liberado", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(MainActivity.this, TelaVotacaoListaActivity.class);
                                     startActivity(intent);
-                                    finish();
+                                    //finish();
 
                                 }
                             }

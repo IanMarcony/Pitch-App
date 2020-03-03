@@ -36,6 +36,7 @@ public class TelaVotacaoListaActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        System.out.println("RA: "+MainActivity.user.getRa());
         setContentView(R.layout.tela_votacao_lista);
         getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
 
@@ -86,8 +87,7 @@ public class TelaVotacaoListaActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(TelaVotacaoListaActivity.this,TelaVotarActivity.class);
 
-                intent.putExtra("Equipes",equipes);
-                intent.putExtra("Posicao",position);
+
                 startActivity(intent);
             }
         });
