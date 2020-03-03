@@ -100,9 +100,12 @@ public class TelaVotacaoListaActivity extends Activity {
         if(MainActivity.user.getRa().equals("admin"))botaoAdicionar.setEnabled(true);
         else botaoAdicionar.setEnabled(false);
         botaoRanking=(Button)findViewById(R.id.botao_ranking_id);//idem de cima
-        if(MainActivity.user.getRa().equals("admin"))botaoRanking.setEnabled(true);
-            else botaoRanking.setEnabled(false);
-        botaoLogout= (Button)findViewById(R.id.botao_logout_id);
+        /*
+            if(MainActivity.user.getRa().equals("admin"))botaoRanking.setEnabled(true);
+                else botaoRanking.setEnabled(false);
+                */
+
+            botaoLogout= (Button)findViewById(R.id.botao_logout_id);
 
         //Funções de click dos botões
 

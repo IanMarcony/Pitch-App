@@ -49,6 +49,7 @@ public class TelaVotarActivity extends Activity {
         btIncrement = findViewById(R.id.botao_acrescentar_id);
         btSubmit = findViewById(R.id.botao_submeter_voto_id);
         etValue=findViewById(R.id.valor_investir_id);
+        etValue.setText(""+user.getSaldo());
         teamName = findViewById(R.id.textView);
 
         stars = findViewById(R.id.rate_equipe_ind_id);

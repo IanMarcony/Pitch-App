@@ -57,21 +57,37 @@ public class TelaRankingMainActivity extends Activity {
 
 
         equipeArray = TelaVotacaoListaActivity.equipes;
-
+        idEquipe1 =equipeArray.indexOf(1);
+        idEquipe2 =equipeArray.indexOf(2);
+        idEquipe3 =equipeArray.indexOf(3);
         equipe1 = (Equipe) equipeArray.get(idEquipe1);
         equipe2 = (Equipe) equipeArray.get(idEquipe2);
         equipe3 = (Equipe) equipeArray.get(idEquipe3);
-        idEquipe1 =equipeArray.indexOf(equipe1);
-                idEquipe2 =equipeArray.indexOf(equipe2);
-                        idEquipe3 =equipeArray.indexOf(equipe3);
 
-                                txtEquipe1.setText(equipe1.getNome());
+
+        txtEquipe1.setText(equipe1.getNome());
         txtEquipe2.setText(equipe2.getNome());
         txtEquipe3.setText(equipe3.getNome());
 
         txtEquipe1p.setText(pgEquipe1.getProgress()+"%");
         txtEquipe2p.setText(pgEquipe2.getProgress()+"%");
         txtEquipe3p.setText(pgEquipe3.getProgress()+"%");
+
+
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+
+        txtEquipe1p.setText(pgEquipe1.getProgress()+"%");
+        txtEquipe2p.setText(pgEquipe2.getProgress()+"%");
+        txtEquipe3p.setText(pgEquipe3.getProgress()+"%");
+
     }
 
     public void actions(){

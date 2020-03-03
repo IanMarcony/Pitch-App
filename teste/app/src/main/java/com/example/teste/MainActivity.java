@@ -42,7 +42,6 @@ public class MainActivity extends Activity {
         botaoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 user = new Usuario();
                 user.setRa(raField.getText().toString());
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();//Aponta pro Banco de dados
