@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
 
             }
         });
-
+        System.out.println("Quantidade de equipes: "+qEquipes);
         botaoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +64,7 @@ public class MainActivity extends Activity {
                 user = new Usuario();
                 user.setRa(raField.getText().toString());
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();//Aponta pro Banco de dados
-                DatabaseReference usuariosReference = databaseReference.child("Alunos");
+                final DatabaseReference usuariosReference = databaseReference.child("Alunos");
 
                 usuariosReference.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -76,9 +76,7 @@ public class MainActivity extends Activity {
 
                                 String ra_t=dataSnapshot.child("Aluno"+i).child("RA").getValue().toString();
                                 float saldo_t=Float.parseFloat(dataSnapshot.child("Aluno"+i).child("Saldo").getValue().toString());
-                              //  for(int i =1;i<=qEquipes;i++){
-                                    //usuariosReference.child("Aluno"+i).
-                               // }
+                              user.setPosicao(i);
                                 user.setSaldo(saldo_t);
                                 user.setLogado(true);
                                 hasFound = true;

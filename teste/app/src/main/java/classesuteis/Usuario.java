@@ -42,6 +42,14 @@ public class Usuario {
         this.votos.set(index,voto);
     }
 
+    public int getPosicao() {
+        return posicao;
+    }
+
+    public void setPosicao(int posicao) {
+        this.posicao = posicao;
+    }
+
     public boolean isLogado() {
         return logado;
     }

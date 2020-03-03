@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -36,10 +37,56 @@ public class TelaVotacaoListaActivity extends Activity {
         setContentView(R.layout.tela_votacao_lista);
         getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
 
-        listaEquipes =(ListView)findViewById(R.id.lista_equipes_geral_id);
-        retornarEquipes();
-        ArrayAdapter<Equipe> adapter = new EquipeAdpter(getApplicationContext(),equipes);
-        listaEquipes.setAdapter(adapter);
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference equipesReference=databaseReference.child("Equipes");
+
+        equipesReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                System.out.println("Entrou na função para pegar do banco");
+                listaEquipes =(ListView)findViewById(R.id.lista_equipes_geral_id);
+                int i=0;
+                for(DataSnapshot dados: dataSnapshot.getChildren()){
+                   Equipe equipe = dados.getValue(Equipe.class);
+
+                    equipes.add(equipe);
+
+
+                    i++;
+                }
+                ArrayAdapter<Equipe> adapter = new EquipeAdpter(getApplicationContext(),equipes);
+                listaEquipes.setAdapter(adapter);
+                listaEquipes.setLongClickable(true);
+                listaEquipes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(TelaVotacaoListaActivity.this,TelaVotarActivity.class);
+
+                        intent.putExtra("Equipes",equipes);
+                        intent.putExtra("Posicao",position);
+                        startActivity(intent);
+                        return true;
+                    }
+                });
+                System.out.println("Finalizou oesquisa no bacpesqui");
+                DatabaseReference databaseReference_aux = FirebaseDatabase.getInstance().getReference();
+                DatabaseReference usuariosReference = databaseReference_aux.child("Alunos");
+
+                for(int j =1;j<=i;j++) {
+                    usuariosReference.child("Aluno" + MainActivity.user.getPosicao()).child("Votos").child("Voto" + j).setValue(0);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getApplicationContext(), "Failed to read value."+ error.toException(),Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+
 
         positionEquipe=0;
 
@@ -80,72 +127,13 @@ public class TelaVotacaoListaActivity extends Activity {
         });
 
 
-        listaEquipes.setLongClickable(true);
-        listaEquipes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(TelaVotacaoListaActivity.this,TelaVotarActivity.class);
-
-                intent.putExtra("Equipes",equipes);
-                intent.putExtra("Posicao",position);
-                startActivity(intent);
-                return true;
-            }
-        });
-
-
-
-
-    }
-
-
-    public void retornarEquipes(){
-        final ArrayList<Equipe> elementos= new ArrayList<>();
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference equipesReference=databaseReference.child("Equipes");
-
-        equipesReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Iterator<DataSnapshot> it=dataSnapshot.getChildren().iterator();
-                int i=1;
-                while(it.hasNext()){
-                    String nome_t=it.next().child("Equipe"+i).child("nome").getValue().toString();
-                    String nome_lider=it.next().child("Equipe"+i).child("nomeLider").getValue().toString();
-                    float media=Float.parseFloat(it.next().child("Equipe"+i).child("media").getValue().toString());
-                    float valor_investido_t=Float.parseFloat(it.next().child("Equipe"+i).child("valorInvestido").getValue().toString());
-                    int check_t=Integer.parseInt(it.next().child("Equipe"+i).child("imagemCheck").getValue().toString());
-                    int estrelas_t=Integer.parseInt(it.next().child("Equipe"+i).child("imagemRate").getValue().toString());
-                    Equipe equipe= new Equipe();
-
-                    equipe.setNome(nome_t);
-                    equipe.setNomeLider(nome_lider);
-                    equipe.setImagemCheck(check_t);
-                    equipe.setImagemRate(estrelas_t);
-                    equipe.setValorInvestido(valor_investido_t);
-                    equipe.setMedia(media);
-
-                    elementos.add(equipe);
-
-
-            i++;
-                }
-
-                equipes=elementos;
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
 
 
 
 
 
     }
+
+
+
 }

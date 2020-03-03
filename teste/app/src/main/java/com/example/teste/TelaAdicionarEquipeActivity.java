@@ -37,9 +37,9 @@ public class TelaAdicionarEquipeActivity extends Activity {
         btnSubmeter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Equipe equipe = new Equipe(nomeProjeto.getText().toString(),nomeLider.getText().toString(),0,0,"",0,0);
+                final Equipe equipe = new Equipe(nomeProjeto.getText().toString(),nomeLider.getText().toString(),0,0,"",0,0);
 
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
                 databaseReference.child("Equipes").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -48,6 +48,9 @@ public class TelaAdicionarEquipeActivity extends Activity {
                         while(it.hasNext()){
                             qEquipes++;
                         }
+                        System.out.println("Quantidade de Equipes: "+qEquipes);
+                        qEquipes++;
+                        databaseReference.child("Equipes").child("Equipe"+qEquipes).setValue(equipe);
 
                     }
 
@@ -56,9 +59,7 @@ public class TelaAdicionarEquipeActivity extends Activity {
 
                     }
                 });
-                System.out.println("Quantidade de Equipes: "+qEquipes);
-                qEquipes++;
-                databaseReference.child("Equipes").child("Equipe"+qEquipes).setValue(equipe);
+
                 Toast.makeText(getApplicationContext(),"Equipe Registrada",Toast.LENGTH_LONG).show();
 
             }
