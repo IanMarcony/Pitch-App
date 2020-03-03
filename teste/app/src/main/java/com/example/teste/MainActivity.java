@@ -38,25 +38,7 @@ public class MainActivity extends Activity {
 
         raField=(TextView)findViewById(R.id.ra_aluno_id);
         botaoLogin=(Button)findViewById(R.id.botao_login_id);
-        qEquipes=0;
-        DatabaseReference equipesReference = FirebaseDatabase.getInstance().getReference("Equipes");
-        equipesReference.child("Equipes").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Iterator<DataSnapshot> it=dataSnapshot.getChildren().iterator();
 
-                while(it.hasNext()){
-                    qEquipes++;
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        System.out.println("Quantidade de equipes: "+qEquipes);
         botaoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,17 +54,19 @@ public class MainActivity extends Activity {
                         boolean hasFound = false;
 
                         for(DataSnapshot dados: dataSnapshot.getChildren()){
-                            if(dados.child("RA").getValue().toString().equals(user.getRa())){
-                                user = dados.getValue(Usuario.class);
-                                user.setLogado(true);
-                                hasFound = true;
-                                if(user.isLogado()) {
-                                    Toast.makeText(getApplicationContext(), "Acesso liberado", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(MainActivity.this, TelaVotacaoListaActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                            if(dados.child("RA").getValue()!=null){
+                                if(dados.child("RA").getValue().toString().equals(user.getRa())){
+                                    user = dados.getValue(Usuario.class);
+                                    user.setLogado(true);
+                                    hasFound = true;
+                                    if(user.isLogado()) {
+                                        Toast.makeText(getApplicationContext(), "Acesso liberado", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(MainActivity.this, TelaVotacaoListaActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                    break;
                                 }
-                                break;
                             }
                         }
 
