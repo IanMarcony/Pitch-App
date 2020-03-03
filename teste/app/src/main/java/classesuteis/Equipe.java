@@ -82,17 +82,18 @@ public class Equipe {
     public void setImagemRate(int imagemRate) {
        switch (imagemRate){
            case 0: this.imagemRate= R.drawable.zero_estrelas;
-               break;
+                break;
            case 1: this.imagemRate= R.drawable.uma_estrelas;
-               break;
+                break;
            case 2: this.imagemRate= R.drawable.duas_estrelas;
-               break;
+                break;
            case 3: this.imagemRate= R.drawable.tres_estrelas;
-               break;
+                break;
            case 4: this.imagemRate= R.drawable.quatro_estrelas;
-               break;
+                break;
            case 5: this.imagemRate= R.drawable.cinco_estrelas;
-               break;
+                setNumeroVoto(getNumeroVoto()+1);
+                break;
 
            default:this.imagemRate= R.drawable.zero_estrelas;
                break;
