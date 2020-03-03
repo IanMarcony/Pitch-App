@@ -64,6 +64,7 @@ public class MainActivity extends Activity {
                                     Intent intent = new Intent(MainActivity.this, TelaVotacaoListaActivity.class);
                                     startActivity(intent);
                                     finish();
+
                                 }
                             }
                         }

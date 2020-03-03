@@ -59,10 +59,10 @@ public class TelaVotarActivity extends Activity {
         saldo = user.getSaldo();
         value = saldo;
 
-        Intent intent = getIntent();
 
-        equipeArray = intent.getParcelableArrayListExtra("Equipes");
-        idEquipe = intent.getIntExtra("Posicao",0);
+
+        equipeArray = TelaVotacaoListaActivity.equipes;
+        idEquipe =TelaVotacaoListaActivity.positionEquipe;
 
         equipe = (Equipe) equipeArray.get(idEquipe);
         teamName.setText(equipe.getNome());
@@ -169,7 +169,8 @@ public class TelaVotarActivity extends Activity {
                 try{
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
                     databaseReference.child("Equipes").child("Equipe"+idEquipe).setValue(equipe);
-
+                        DatabaseReference usuarioReference = FirebaseDatabase.getInstance().getReference("Alunos");
+                        usuarioReference.child("Aluno"+MainActivity.user.getPosicao()).setValue(user);
                     Intent intent = new Intent(TelaVotarActivity.this,TelaVotacaoListaActivity.class);
                     startActivity(intent);
                 }catch (Exception err){

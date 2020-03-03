@@ -44,9 +44,18 @@ public class TelaAdicionarEquipeActivity extends Activity {
                 databaseReference.child("Equipes").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                         setqEquipes(dataSnapshot.getChildrenCount());
                         System.out.println(qEquipes+" 48");
                         System.out.println("entrou data change 49");
+
+
+
+                        for(DataSnapshot dados: dataSnapshot.getChildren()){
+                            qEquipes++;
+                        }
+
+
                     }
 
                     @Override

@@ -55,17 +55,17 @@ public class TelaRankingMainActivity extends Activity {
         pgEquipe2 = findViewById(R.id.equipe2_progressbar_id);
         pgEquipe3 = findViewById(R.id.equipe3_progressbar_id3);
 
-        Intent intent = getIntent();
-        equipeArray = intent.getParcelableArrayListExtra("Equipes");
-        idEquipe1 = intent.getIntExtra("Posicao1",0);
-        idEquipe2 = intent.getIntExtra("Posicao2",0);
-        idEquipe3 = intent.getIntExtra("Posicao3",0);
+
+        equipeArray = TelaVotacaoListaActivity.equipes;
 
         equipe1 = (Equipe) equipeArray.get(idEquipe1);
         equipe2 = (Equipe) equipeArray.get(idEquipe2);
         equipe3 = (Equipe) equipeArray.get(idEquipe3);
+        idEquipe1 =equipeArray.indexOf(equipe1);
+                idEquipe2 =equipeArray.indexOf(equipe2);
+                        idEquipe3 =equipeArray.indexOf(equipe3);
 
-        txtEquipe1.setText(equipe1.getNome());
+                                txtEquipe1.setText(equipe1.getNome());
         txtEquipe2.setText(equipe2.getNome());
         txtEquipe3.setText(equipe3.getNome());
 
