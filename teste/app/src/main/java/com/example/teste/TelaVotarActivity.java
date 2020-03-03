@@ -30,7 +30,7 @@ public class TelaVotarActivity extends Activity {
     private SeekBar rateBar;
     private ImageView stars;
     private TextView teamName;
-    private EditText etValue;
+    private TextView etValue;
 
     private float saldo, value;
     private int idEquipe,rate;
@@ -59,6 +59,8 @@ public class TelaVotarActivity extends Activity {
         saldo = user.getSaldo();
         value = saldo;
 
+        etValue.setText(""+value);
+
 
 
         equipeArray = TelaVotacaoListaActivity.equipes;
@@ -71,27 +73,27 @@ public class TelaVotarActivity extends Activity {
     }
 
     public void actions(){
-        etValue.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            @SuppressLint("SetTextI18n")
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                value = Float.parseFloat(etValue.getText().toString());
-                etValue.setText(""+value);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {}
-        });
+//        etValue.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+//
+//            @Override
+//            @SuppressLint("SetTextI18n")
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                value = Float.parseFloat(etValue.getText().toString());
+//                etValue.setText(""+value);
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {}
+//        });
 
         btDecrease.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 if(!(value<=0)){
-                    value -= 100f;
+                    value -= 1000;
                     etValue.setText(""+value);
                 }
             }
@@ -102,7 +104,7 @@ public class TelaVotarActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if(!(value>=saldo)){
-                    value += 100f;
+                    value += 1000;
                     etValue.setText(""+value);
                 }
             }
@@ -163,7 +165,7 @@ public class TelaVotarActivity extends Activity {
 
                 //confirmar voto
                 equipe.setImagemCheck(1);
-                user.setVotos(rate,idEquipe);
+//                user.setVotos(rate,idEquipe);
 
                 //firebase
                 try{

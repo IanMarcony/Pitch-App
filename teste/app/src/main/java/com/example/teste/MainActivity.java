@@ -54,17 +54,19 @@ public class MainActivity extends Activity {
                         boolean hasFound = false;
                         for(int i=1;i<=37;i++){
 
-                            if(dataSnapshot.child("Aluno"+i).child("RA").getValue().toString().equals(user.getRa())){
-                                user.setSaldo(Float.parseFloat(dataSnapshot.child("Aluno"+i).child("Saldo").getValue().toString()));
-                                user.setPosicao(i);
-                                user.setLogado(true);
-                                hasFound = true;
-                                if(user.isLogado()) {
-                                    Toast.makeText(getApplicationContext(), "Acesso liberado", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(MainActivity.this, TelaVotacaoListaActivity.class);
-                                    startActivity(intent);
+                            if(dataSnapshot.child("Aluno"+i).child("RA").getValue()!=null){
+                                if(dataSnapshot.child("Aluno"+i).child("RA").getValue().toString().equals(user.getRa())){
+                                    user.setSaldo(Float.parseFloat(dataSnapshot.child("Aluno"+i).child("Saldo").getValue().toString()));
+                                    user.setPosicao(i);
+                                    user.setLogado(true);
+                                    hasFound = true;
+                                    if(user.isLogado()) {
+                                        Toast.makeText(getApplicationContext(), "Acesso liberado", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(MainActivity.this, TelaVotacaoListaActivity.class);
+                                        startActivity(intent);
 
 
+                                    }
                                 }
                             }
                         }
