@@ -29,13 +29,14 @@ import classesuteis.EquipeAdpter;
 
 public class TelaVotacaoListaActivity extends Activity {
     private ListView listaEquipes;
-    public  ArrayList<Equipe> equipes;
-    public  int positionEquipe;
+    public  static ArrayList<Equipe> equipes;
+    public  static int positionEquipe;
 
     private Button botaoAdicionar,botaoRanking,botaoLogout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        System.out.println("RA: "+MainActivity.user.getRa());
         setContentView(R.layout.tela_votacao_lista);
         getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
 
@@ -86,8 +87,7 @@ public class TelaVotacaoListaActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(TelaVotacaoListaActivity.this,TelaVotarActivity.class);
 
-                intent.putExtra("Equipes",equipes);
-                intent.putExtra("Posicao",position);
+
                 startActivity(intent);
             }
         });
@@ -95,10 +95,10 @@ public class TelaVotacaoListaActivity extends Activity {
         positionEquipe=0;
 
         botaoAdicionar=(Button)findViewById(R.id.botao_add_equipe_id);//colocar condição para verificar se é aluno ou professor
-        if(true)botaoAdicionar.setEnabled(true);
+        if(MainActivity.user.getRa().equals("admin"))botaoAdicionar.setEnabled(true);
         else botaoAdicionar.setEnabled(false);
         botaoRanking=(Button)findViewById(R.id.botao_ranking_id);//idem de cima
-        if(true)botaoRanking.setEnabled(true);
+        if(MainActivity.user.getRa().equals("admin"))botaoRanking.setEnabled(true);
             else botaoRanking.setEnabled(false);
         botaoLogout= (Button)findViewById(R.id.botao_logout_id);
 
@@ -116,7 +116,7 @@ public class TelaVotacaoListaActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(TelaVotacaoListaActivity.this,TelaRankingMainActivity.class);
-                intent.putExtra("Equipes",equipes);
+
                 startActivity(intent);
             }
         });
