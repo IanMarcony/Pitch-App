@@ -35,9 +35,9 @@ public class TelaRankingVisaoGeralActivity extends AppCompatActivity {
         txtRanking = findViewById(R.id.posicao_ranking_id);
         txtInvestidor = findViewById(R.id.maior_investidor_id);
 
-        Intent intent = getIntent();
-        equipeArray = intent.getParcelableArrayListExtra("Equipe");
-        idEquipe = intent.getIntExtra("Posicao",0);
+
+        equipeArray = TelaRankingGeralActivity.equipes;
+        idEquipe = TelaRankingGeralActivity.positionEquipe;
         equipe = (Equipe) equipeArray.get(idEquipe);
 
         txtNome.setText(equipe.getNome());

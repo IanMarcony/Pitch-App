@@ -44,9 +44,13 @@ public class TelaAdicionarEquipeActivity extends Activity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         long cont = dataSnapshot.getChildrenCount();
 
+
                         System.out.println(cont);
                         databaseReference.child("Equipes").child("Equipe"+(cont+1)).setValue(equipe);
                         Toast.makeText(getApplicationContext(),"Equipe Registrada",Toast.LENGTH_LONG).show();
+
+
+
                     }
 
                     @Override
