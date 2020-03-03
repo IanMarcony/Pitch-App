@@ -47,10 +47,12 @@ public class TelaVotacaoListaActivity extends Activity {
                 System.out.println("Entrou na função para pegar do banco");
                 listaEquipes =(ListView)findViewById(R.id.lista_equipes_geral_id);
                 int i=0;
+                equipes = new ArrayList<Equipe>();
                 for(DataSnapshot dados: dataSnapshot.getChildren()){
                     Equipe equipe = dados.getValue(Equipe.class);
-
+                    System.out.println(dados.getValue());
                     equipes.add(equipe);
+                    System.out.println(equipes);
 
 
                     i++;
