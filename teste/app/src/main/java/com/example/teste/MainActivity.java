@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
                         for(int i=1;i<=37;i++){
 
                             if(dataSnapshot.child("Aluno"+i).child("RA").getValue().toString().equals(user.getRa())){
-                                user.setSaldo(Float.parseFloat(dataSnapshot.child("Aluno"+i).child("RA").getValue().toString()));
+                                user.setSaldo(Float.parseFloat(dataSnapshot.child("Aluno"+i).child("Saldo").getValue().toString()));
                                 user.setPosicao(i);
                                 user.setLogado(true);
                                 hasFound = true;

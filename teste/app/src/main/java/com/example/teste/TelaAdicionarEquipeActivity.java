@@ -23,7 +23,7 @@ import classesuteis.Equipe;
 public class TelaAdicionarEquipeActivity extends Activity {
     private TextView nomeProjeto, nomeLider;
     private Button btnSubmeter;
-    private int qEquipes=0;
+    private long qEquipes=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,24 +40,37 @@ public class TelaAdicionarEquipeActivity extends Activity {
                 final Equipe equipe = new Equipe(nomeProjeto.getText().toString(),nomeLider.getText().toString(),0,0,"",0,0);
 
                 final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+//                setqEquipes(databaseReference.child("Equipes"));
                 databaseReference.child("Equipes").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        
+                        setqEquipes(dataSnapshot.getChildrenCount());
+                        System.out.println(qEquipes+" 48");
+                        System.out.println("entrou data change 49");
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                        System.out.println("54");
                     }
                 });
-                qEquipes++;
-                databaseReference.child("Equipes").child("Equipe"+qEquipes).setValue(equipe);
+                System.out.println(getqEquipes()+" 57");
+                databaseReference.child("Equipes").child("Equipe"+(getqEquipes()+1)).setValue(equipe);
                 Toast.makeText(getApplicationContext(),"Equipe Registrada",Toast.LENGTH_LONG).show();
 
             }
         });
 
 
+    }
+
+    public void setqEquipes(long qEquipes){
+        this.qEquipes = qEquipes;
+        System.out.println(qEquipes+" Set 69");
+    }
+
+    public long getqEquipes(){
+        System.out.println(this.qEquipes+" Get 73");
+        return this.qEquipes;
     }
 }
