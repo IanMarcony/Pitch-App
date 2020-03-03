@@ -23,7 +23,7 @@ import classesuteis.Equipe;
 public class TelaAdicionarEquipeActivity extends Activity {
     private TextView nomeProjeto, nomeLider;
     private Button btnSubmeter;
-    private int qEquipes;
+    private int qEquipes=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +44,12 @@ public class TelaAdicionarEquipeActivity extends Activity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+<<<<<<< HEAD
+                        for(DataSnapshot dados: dataSnapshot.getChildren()){
+                            qEquipes++;
+                        }
+=======
+>>>>>>> 84e6a96253e4203de134a17ac8cd02cd3afb4031
                     }
 
                     @Override
@@ -51,7 +57,8 @@ public class TelaAdicionarEquipeActivity extends Activity {
 
                     }
                 });
-
+                qEquipes++;
+                databaseReference.child("Equipes").child("Equipe"+qEquipes).setValue(equipe);
                 Toast.makeText(getApplicationContext(),"Equipe Registrada",Toast.LENGTH_LONG).show();
 
             }
