@@ -43,14 +43,6 @@ public class TelaAdicionarEquipeActivity extends Activity {
                 databaseReference.child("Equipes").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Iterator<DataSnapshot> it=dataSnapshot.getChildren().iterator();
-                        qEquipes=0;
-                        for(DataSnapshot dados: dataSnapshot.getChildren()){
-                            qEquipes++;
-                        }
-                        System.out.println("Quantidade de Equipes: "+qEquipes);
-                        qEquipes++;
-                        databaseReference.child("Equipes").child("Equipe"+qEquipes).setValue(equipe);
 
                     }
 
