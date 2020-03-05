@@ -9,12 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.teste.R;
+import com.example.teste.TelaVotacaoListaActivity;
 
 import java.util.ArrayList;
 
 public class EquipeAdpter extends ArrayAdapter<Equipe> {
     private final Context context;
     private final ArrayList<Equipe> elementos;
+    private final Usuario  user = TelaVotacaoListaActivity.user_aux;
 
     public EquipeAdpter(Context context, ArrayList<Equipe> elementos){
         super(context, R.layout.linha,elementos);
@@ -30,10 +32,10 @@ public class EquipeAdpter extends ArrayAdapter<Equipe> {
         ImageView votado_check = (ImageView) roview.findViewById(R.id.votado_check_id);
         ImageView rate = (ImageView)roview.findViewById(R.id.rate_equipe_id);
         TextView investimento = (TextView)roview.findViewById(R.id.valor_investido_equipe_id);
-
+        user.getEquipesArray().add(elementos.get(position));
         nomeEquipe.setText(elementos.get(position).getNome());
-        votado_check.setImageResource(elementos.get(position).getImagemCheck());
-        rate.setImageResource(elementos.get(position).getImagemRate());
+        votado_check.setImageResource(user.getEquipes(elementos.indexOf(elementos.get(position))).getImagemCheck());
+        rate.setImageResource(user.getEquipes(elementos.indexOf(elementos.get(position))).getImagemRate());
         investimento.setText("R$ "+elementos.get(position).getValorInvestido());
 
         return roview;

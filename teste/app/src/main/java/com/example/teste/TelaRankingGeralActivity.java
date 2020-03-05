@@ -19,7 +19,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
+import classesuteis.ComparadorEquipes;
 import classesuteis.Equipe;
 import classesuteis.EquipeAdpter;
 
@@ -53,7 +55,7 @@ public class TelaRankingGeralActivity extends Activity {
 
 
                 }
-
+                Collections.sort(equipes, new ComparadorEquipes());
                 ArrayAdapter<Equipe> adapter = new EquipeAdpter(getApplicationContext(),equipes);
                 listaEquipes.setAdapter(adapter);
 

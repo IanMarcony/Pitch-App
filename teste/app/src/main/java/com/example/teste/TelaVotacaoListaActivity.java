@@ -38,12 +38,12 @@ public class TelaVotacaoListaActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println("RA: "+user_aux.getRa());
+
         setContentView(R.layout.tela_votacao_lista);
         getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
-
+        System.out.println("RA: "+user_aux.getRa());
         listaEquipes = findViewById(R.id.lista_equipes_geral_id);
-
+        positionEquipe=0;
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         DatabaseReference equipesReference=databaseReference.child("Equipes");
 
@@ -56,6 +56,7 @@ public class TelaVotacaoListaActivity extends Activity {
                 equipes = new ArrayList<Equipe>();
                 for(DataSnapshot dados: dataSnapshot.getChildren()){
                     Equipe equipe = dados.getValue(Equipe.class);
+                    equipe.setIdEquipe(i+1);
                     System.out.println(dados.getValue());
                     equipes.add(equipe);
                     System.out.println(equipes);
@@ -66,14 +67,8 @@ public class TelaVotacaoListaActivity extends Activity {
 
                 ArrayAdapter<Equipe> adapter = new EquipeAdpter(getApplicationContext(),equipes);
                 listaEquipes.setAdapter(adapter);
-
                 System.out.println("Finalizou oesquisa no bacpesqui");
-                DatabaseReference databaseReference_aux = FirebaseDatabase.getInstance().getReference();
-                DatabaseReference usuariosReference = databaseReference_aux.child("Alunos");
 
-                for(int j =1;j<=i;j++) {
-                    usuariosReference.child("Aluno" +user_aux.getPosicao()).child("Votos").child("Voto" + j).setValue(0);
-                }
 
             }
 
@@ -88,22 +83,17 @@ public class TelaVotacaoListaActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(TelaVotacaoListaActivity.this,TelaVotarActivity.class);
-
-
+                positionEquipe=position;
                 startActivity(intent);
             }
         });
 
-        positionEquipe=0;
+
 
         botaoAdicionar=(Button)findViewById(R.id.botao_add_equipe_id);//colocar condição para verificar se é aluno ou professor
         if(MainActivity.user.getRa().equals("admin"))botaoAdicionar.setEnabled(true);
         else botaoAdicionar.setEnabled(false);
-        botaoRanking=(Button)findViewById(R.id.botao_ranking_id);//idem de cima
-        /*
-            if(MainActivity.user.getRa().equals("admin"))botaoRanking.setEnabled(true);
-                else botaoRanking.setEnabled(false);
-                */
+        botaoRanking=(Button)findViewById(R.id.botao_ranking_id);
 
             botaoLogout= (Button)findViewById(R.id.botao_logout_id);
 

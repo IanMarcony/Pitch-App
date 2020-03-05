@@ -1,61 +1,70 @@
 package classesuteis;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
-    private String ra;
-    private int posicao;
-    private float saldo;
-    private List<Integer> votos;
-    private boolean logado;
+    private String RA;
+    private int Posicao;
+    private float Saldo;
+
+    private List<Equipe> Equipes;
+    private boolean Logado;
 
     public Usuario() {
+
+        this.Equipes= new ArrayList<>();
     }
 
-    public Usuario(String ra, float saldo, List<Integer> votos) {
-        this.ra = ra;
-        this.saldo = saldo;
-        this.votos = votos;
+    public Usuario(String ra, float saldo) {
+        this.RA = ra;
+        this.Saldo = saldo;
+
+        this.Equipes= new ArrayList<>();
     }
 
     public String getRa() {
-        return ra;
+        return RA;
     }
 
     public void setRa(String ra) {
-        this.ra = ra;
+        this.RA = ra;
     }
 
+    public Equipe getEquipes(int index) {
+        return Equipes.get(index);
+    }
+
+    public List<Equipe> getEquipesArray() {
+        return Equipes;
+    }
+
+
+
     public float getSaldo() {
-        return saldo;
+        return Saldo;
     }
 
     public void setSaldo(float saldo) {
-        this.saldo = saldo;
+        this.Saldo = saldo;
     }
 
-    public List<Integer> getVotos() {
-        return votos;
-    }
 
-    public void setVotos(int voto,int index) {
-        this.votos.set(index,voto);
-    }
 
     public int getPosicao() {
-        return posicao;
+        return Posicao;
     }
 
     public void setPosicao(int posicao) {
-        this.posicao = posicao;
+        this.Posicao = posicao;
     }
 
     public boolean isLogado() {
-        return logado;
+        return Logado;
     }
 
     public void setLogado(boolean logado) {
-        this.logado = logado;
+        this.Logado = logado;
     }
 
 

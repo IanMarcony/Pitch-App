@@ -53,12 +53,31 @@ public class MainActivity extends Activity {
                         boolean hasFound = false;
                         for(int i=1;i<=37;i++){
 
-                            if(dataSnapshot.child("Aluno"+i).child("RA").getValue()!=null){
-                                if(dataSnapshot.child("Aluno"+i).child("RA").getValue().toString().equals(user.getRa())){
-                                    user.setSaldo(Float.parseFloat(dataSnapshot.child("Aluno"+i).child("Saldo").getValue().toString()));
+                            if(dataSnapshot.child("Aluno"+i).child("ra").getValue()!=null){
+                                if(dataSnapshot.child("Aluno"+i).child("ra").getValue().toString().equals(user.getRa())){
+                                    user.setSaldo(Float.parseFloat(dataSnapshot.child("Aluno"+i).child("saldo").getValue().toString()));
                                     user.setPosicao(i);
                                     user.setLogado(true);
                                     hasFound = true;
+                                    final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+                                    databaseReference.child("Equipes").addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            long cont = dataSnapshot.getChildrenCount();
+                                            DatabaseReference databaseReference_aux = FirebaseDatabase.getInstance().getReference();
+                                            DatabaseReference usuariosReference = databaseReference_aux.child("Alunos");
+
+                                            for(int j =1;j<=cont;j++) {
+                                                usuariosReference.child("Aluno" +user.getPosicao()).child("Votos").child("Voto" + j).setValue(0);
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
                                     if(user.isLogado()) {
                                         Toast.makeText(getApplicationContext(), "Acesso liberado", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(MainActivity.this, TelaVotacaoListaActivity.class);

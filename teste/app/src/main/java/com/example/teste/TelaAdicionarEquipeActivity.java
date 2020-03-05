@@ -1,6 +1,7 @@
 package com.example.teste;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -46,10 +47,12 @@ public class TelaAdicionarEquipeActivity extends Activity {
 
 
                         System.out.println(cont);
+                        equipe.setIdEquipe(cont+1);
                         databaseReference.child("Equipes").child("Equipe"+(cont+1)).setValue(equipe);
                         Toast.makeText(getApplicationContext(),"Equipe Registrada",Toast.LENGTH_LONG).show();
 
-
+                        Intent intent= new Intent(TelaAdicionarEquipeActivity.this, TelaVotacaoListaActivity.class);
+                        startActivity(intent);
 
                     }
 

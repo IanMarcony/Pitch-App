@@ -13,7 +13,10 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
+import classesuteis.ComparadorEquipes;
 import classesuteis.Equipe;
 
 public class TelaRankingMainActivity extends Activity {
@@ -57,24 +60,23 @@ public class TelaRankingMainActivity extends Activity {
 
 
         equipeArray = TelaVotacaoListaActivity.equipes;
-        idEquipe1 =equipeArray.indexOf(1);
-        idEquipe2 =equipeArray.indexOf(2);
-        idEquipe3 =equipeArray.indexOf(3);
-        equipe1 = (Equipe) equipeArray.get(idEquipe1);
-        equipe2 = (Equipe) equipeArray.get(idEquipe2);
-        equipe3 = (Equipe) equipeArray.get(idEquipe3);
+        if(equipeArray.size()>=3) {
+            Collections.sort(equipeArray, new ComparadorEquipes());
+            if(equipeArray.size()>=1)equipe1 = (Equipe) equipeArray.get(0);
+            if(equipeArray.size()>=2)equipe2 = (Equipe) equipeArray.get(1);
+            if(equipeArray.size()>=3)equipe3 = (Equipe) equipeArray.get(2);
 
 
-        txtEquipe1.setText(equipe1.getNome());
-        txtEquipe2.setText(equipe2.getNome());
-        txtEquipe3.setText(equipe3.getNome());
+            if(equipeArray.size()>=1)txtEquipe1.setText(equipe1.getNome());
+            if(equipeArray.size()>=2)txtEquipe2.setText(equipe2.getNome());
+            if(equipeArray.size()>=3)txtEquipe3.setText(equipe3.getNome());
 
-        txtEquipe1p.setText(pgEquipe1.getProgress()+"%");
-        txtEquipe2p.setText(pgEquipe2.getProgress()+"%");
-        txtEquipe3p.setText(pgEquipe3.getProgress()+"%");
+            if(equipeArray.size()>=1)txtEquipe1p.setText(pgEquipe1.getProgress() + "%");
+            if(equipeArray.size()>=2)txtEquipe2p.setText(pgEquipe2.getProgress() + "%");
+            if(equipeArray.size()>=3)txtEquipe3p.setText(pgEquipe3.getProgress() + "%");
 
 
-
+        }
 
     }
 
@@ -84,9 +86,9 @@ public class TelaRankingMainActivity extends Activity {
 
 
 
-        txtEquipe1p.setText(pgEquipe1.getProgress()+"%");
-        txtEquipe2p.setText(pgEquipe2.getProgress()+"%");
-        txtEquipe3p.setText(pgEquipe3.getProgress()+"%");
+        if(equipeArray.size()>=1)txtEquipe1p.setText(pgEquipe1.getProgress()+"%");
+        if(equipeArray.size()>=2)txtEquipe2p.setText(pgEquipe2.getProgress()+"%");
+        if(equipeArray.size()>=3)txtEquipe3p.setText(pgEquipe3.getProgress()+"%");
 
     }
 

@@ -4,6 +4,7 @@ import com.example.teste.R;
 
 public class Equipe {
     private String nome, nomeLider;
+    private long idEquipe;
     private float media;
     private int positionRanking;
     private String raInvestidor;
@@ -41,6 +42,14 @@ public class Equipe {
         this.nome = "";
         this.media = 0;
         this.numeroVoto = 0;
+    }
+
+    public long getIdEquipe() {
+        return idEquipe;
+    }
+
+    public void setIdEquipe(long idEquipe) {
+        this.idEquipe = idEquipe;
     }
 
     public String getNomeLider() {
