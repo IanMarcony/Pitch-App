@@ -37,7 +37,7 @@ public class TelaRankingMainActivity extends Activity {
             txtEquipe1p,txtEquipe2p,txtEquipe3p;
 
     private int idEquipe1,idEquipe2,idEquipe3;
-    private ArrayList equipeArray;
+    public static ArrayList equipeArray;
     private Equipe equipe1,equipe2,equipe3;
 
     @SuppressLint("SetTextI18n")

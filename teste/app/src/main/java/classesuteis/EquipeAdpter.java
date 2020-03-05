@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.example.teste.R;
@@ -31,6 +33,7 @@ public class EquipeAdpter extends ArrayAdapter<Equipe> {
         TextView nomeEquipe = (TextView) roview.findViewById(R.id.nome_equipe_id);
         ImageView votado_check = (ImageView) roview.findViewById(R.id.votado_check_id);
         ImageView rate = (ImageView)roview.findViewById(R.id.rate_equipe_id);
+        TableLayout linha = roview.findViewById(R.id.tabela_elementos_id);
         TextView investimento = (TextView)roview.findViewById(R.id.valor_investido_equipe_id);
 
         if(!user.getEquipesArray().get(position).getNome().equals(elementos.get(position).getNome())) {
@@ -38,11 +41,13 @@ public class EquipeAdpter extends ArrayAdapter<Equipe> {
             nomeEquipe.setText(elementos.get(position).getNome());
             votado_check.setImageResource(R.drawable.nao_votado);
             rate.setImageResource(R.drawable.zero_estrelas);
+            linha.setBackgroundResource(R.color.check_1);
             investimento.setText("R$ " + elementos.get(position).getValorInvestido());
         }else{
             nomeEquipe.setText(elementos.get(position).getNome());
             votado_check.setImageResource(user.getEquipes(position).getImagemCheck());
             rate.setImageResource(user.getEquipes(position).getImagemRate());
+            linha.setBackgroundResource(R.color.check_2);
             investimento.setText("R$ " + elementos.get(position).getValorInvestido());
         }
         return roview;

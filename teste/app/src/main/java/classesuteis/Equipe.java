@@ -12,6 +12,7 @@ public class Equipe {
     private float valorInvestido;
     private int numeroVoto;
     private int imagemRate,imagemCheck;
+    private int rgbBackgroundRow;
 
     public Equipe(String nome, String nomeLider, float media, int positionRanking, String raInvestidor, float valorInvestido, int numeroVoto) {
         this.nome = nome;
@@ -42,6 +43,20 @@ public class Equipe {
         this.nome = "";
         this.media = 0;
         this.numeroVoto = 0;
+    }
+
+    public int getRgbBackgroundRow() {
+        return rgbBackgroundRow;
+    }
+
+    public void setRgbBackgroundRow(int check) {
+        switch (check){
+            case 0: this.rgbBackgroundRow = R.color.check_1;
+            break;
+            case 1: this.rgbBackgroundRow = R.color.check_2;
+                break;
+        }
+
     }
 
     public long getIdEquipe() {

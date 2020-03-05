@@ -191,8 +191,9 @@ public class TelaVotarActivity extends Activity {
 
                 //setar saldo user
                 user.setSaldo(saldo-value);
-                user.getEquipes(idEquipe).setNumeroVoto(rate);
+                user.getEquipes(idEquipe).setImagemRate(rate);
                 user.getEquipes(idEquipe).setImagemCheck(1);
+                user.getEquipes(idEquipe).setRgbBackgroundRow(1);
                 //setar rate
 
 

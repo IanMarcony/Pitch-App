@@ -34,41 +34,12 @@ public class TelaRankingGeralActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_ranking_geral);
         getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
-
+        equipes=TelaRankingMainActivity.equipeArray;
         listaEquipes =(ListView)findViewById(R.id.lista_equipes_geral_id);
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference equipesReference=databaseReference.child("Equipes");
 
-        equipesReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                System.out.println("Entrou na função para pegar do banco");
-
-
-                equipes = new ArrayList<Equipe>();
-                for(DataSnapshot dados: dataSnapshot.getChildren()){
-                    Equipe equipe = dados.getValue(Equipe.class);
-                    System.out.println(dados.getValue());
-                    equipes.add(equipe);
-                    System.out.println(equipes);
-
-
-
-                }
                 Collections.sort(equipes, new ComparadorEquipes());
-                ArrayAdapter<Equipe> adapter = new EquipeAdpter(getApplicationContext(),equipes);
-                listaEquipes.setAdapter(adapter);
-
-                System.out.println("Finalizou oesquisa no bacpesqui");
 
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getApplicationContext(), "Failed to read value."+ error.toException(),Toast.LENGTH_LONG).show();
-            }
-        });
 
         ArrayAdapter<Equipe> adapter = new EquipeAdpter(getApplicationContext(),equipes);
         listaEquipes.setAdapter(adapter);
