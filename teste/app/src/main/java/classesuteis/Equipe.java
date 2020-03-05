@@ -101,9 +101,7 @@ public class Equipe {
            case 4: this.imagemRate= R.drawable.quatro_estrelas;
                 break;
            case 5: this.imagemRate= R.drawable.cinco_estrelas;
-                setNumeroVoto(getNumeroVoto()+1);
                 break;
-
            default:this.imagemRate= R.drawable.zero_estrelas;
                break;
 

@@ -191,12 +191,13 @@ public class TelaVotarActivity extends Activity {
 
                 //setar saldo user
                 user.setSaldo(saldo-value);
-
+                user.getEquipes(idEquipe).setNumeroVoto(rate);
+                user.getEquipes(idEquipe).setImagemCheck(1);
                 //setar rate
-                equipe.setImagemRate(rate);
+
 
                 //confirmar voto
-                equipe.setImagemCheck(1);
+
 //                user.setVotos(rate,idEquipe);
 
                 //firebase
@@ -205,7 +206,7 @@ public class TelaVotarActivity extends Activity {
                     databaseReference.child("Equipes").child("Equipe"+(idEquipe+1)).setValue(equipe);
                         DatabaseReference usuarioReference = FirebaseDatabase.getInstance().getReference("Alunos");
                         usuarioReference.child("Aluno"+MainActivity.user.getPosicao()).setValue(user);
-                    usuarioReference.child("Aluno"+MainActivity.user.getPosicao()).child("Votos").child("Voto"+(idEquipe+1)).setValue(rate);
+
                     Intent intent = new Intent(TelaVotarActivity.this,TelaVotacaoListaActivity.class);
                     startActivity(intent);
                     finish();

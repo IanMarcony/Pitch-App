@@ -5,7 +5,9 @@ package com.example.teste;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,7 +49,7 @@ public class MainActivity extends Activity {
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();//Aponta pro Banco de dados
                  DatabaseReference usuariosReference = databaseReference.child("Alunos");
 
-                usuariosReference.addValueEventListener(new ValueEventListener() {
+                usuariosReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         boolean hasFound = false;
@@ -59,25 +61,6 @@ public class MainActivity extends Activity {
                                     user.setPosicao(i);
                                     user.setLogado(true);
                                     hasFound = true;
-                                    final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-
-                                    databaseReference.child("Equipes").addListenerForSingleValueEvent(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                            long cont = dataSnapshot.getChildrenCount();
-                                            DatabaseReference databaseReference_aux = FirebaseDatabase.getInstance().getReference();
-                                            DatabaseReference usuariosReference = databaseReference_aux.child("Alunos");
-
-                                            for(int j =1;j<=cont;j++) {
-                                                usuariosReference.child("Aluno" +user.getPosicao()).child("Votos").child("Voto" + j).setValue(0);
-                                            }
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                        }
-                                    });
                                     if(user.isLogado()) {
                                         Toast.makeText(getApplicationContext(), "Acesso liberado", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(MainActivity.this, TelaVotacaoListaActivity.class);
@@ -101,8 +84,14 @@ public class MainActivity extends Activity {
                     }
                 });
 
+
+
             }
         });
 
+
+
     }
+
+
 }

@@ -10,7 +10,14 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,6 +25,7 @@ import java.util.Comparator;
 
 import classesuteis.ComparadorEquipes;
 import classesuteis.Equipe;
+import classesuteis.Usuario;
 
 public class TelaRankingMainActivity extends Activity {
 
@@ -62,6 +70,9 @@ public class TelaRankingMainActivity extends Activity {
         equipeArray = TelaVotacaoListaActivity.equipes;
         if(equipeArray.size()>=3) {
             Collections.sort(equipeArray, new ComparadorEquipes());
+
+
+
             if(equipeArray.size()>=1)equipe1 = (Equipe) equipeArray.get(0);
             if(equipeArray.size()>=2)equipe2 = (Equipe) equipeArray.get(1);
             if(equipeArray.size()>=3)equipe3 = (Equipe) equipeArray.get(2);
@@ -71,13 +82,17 @@ public class TelaRankingMainActivity extends Activity {
             if(equipeArray.size()>=2)txtEquipe2.setText(equipe2.getNome());
             if(equipeArray.size()>=3)txtEquipe3.setText(equipe3.getNome());
 
+            if(equipeArray.size()>=1)pgEquipe1.setProgress(equipe1.getNumeroVoto());
+            if(equipeArray.size()>=2)pgEquipe2.setProgress(equipe2.getNumeroVoto());
+            if(equipeArray.size()>=3)pgEquipe3.setProgress(equipe3.getNumeroVoto());
+
             if(equipeArray.size()>=1)txtEquipe1p.setText(pgEquipe1.getProgress() + "%");
             if(equipeArray.size()>=2)txtEquipe2p.setText(pgEquipe2.getProgress() + "%");
             if(equipeArray.size()>=3)txtEquipe3p.setText(pgEquipe3.getProgress() + "%");
 
 
         }
-
+        actions();
     }
 
     @Override
