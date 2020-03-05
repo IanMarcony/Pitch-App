@@ -33,7 +33,7 @@ public class EquipeAdpter extends ArrayAdapter<Equipe> {
         ImageView rate = (ImageView)roview.findViewById(R.id.rate_equipe_id);
         TextView investimento = (TextView)roview.findViewById(R.id.valor_investido_equipe_id);
 
-        if(!user.getEquipesArray().contains(elementos.get(position))) {
+        if(!user.getEquipesArray().get(position).getNome().equals(elementos.get(position).getNome())) {
             user.getEquipesArray().add(position,elementos.get(position));
             nomeEquipe.setText(elementos.get(position).getNome());
             votado_check.setImageResource(R.drawable.nao_votado);

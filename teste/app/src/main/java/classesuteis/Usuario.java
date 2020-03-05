@@ -35,6 +35,8 @@ public class Usuario {
         return Equipes.get(index);
     }
 
+    public List<Equipe> setEquipesArray(List<Equipe> e){return this.Equipes=e;}
+
     public List<Equipe> getEquipesArray() {
         return Equipes;
     }

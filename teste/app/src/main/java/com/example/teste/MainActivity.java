@@ -21,8 +21,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
+import classesuteis.Equipe;
 import classesuteis.Usuario;
 
 
@@ -60,6 +63,12 @@ public class MainActivity extends Activity {
                                     user.setSaldo(Float.parseFloat(dataSnapshot.child("Aluno"+i).child("saldo").getValue().toString()));
                                     user.setPosicao(i);
                                     user.setLogado(true);
+                                    List<Equipe> e1 = new ArrayList<>();
+                                    for(DataSnapshot dados: dataSnapshot.child("Aluno"+i).child("equipesArray").getChildren()){
+                                        Equipe e = dados.getValue(Equipe.class);
+                                        e1.add(e);
+                                    }
+                                    user.setEquipesArray(e1);
                                     hasFound = true;
                                     if(user.isLogado()) {
                                         Toast.makeText(getApplicationContext(), "Acesso liberado", Toast.LENGTH_SHORT).show();
