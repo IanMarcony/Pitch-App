@@ -28,9 +28,10 @@ public class EquipeAdapterRankingGeral extends ArrayAdapter<Equipe> {
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View roview = inflater.inflate(R.layout.linha_ranking_geral, parent, false);
         TextView nomeEquipe =  (TextView) roview.findViewById(R.id.nome_equipe_id);
+        TextView txtRanking = roview.findViewById(R.id.rankingLinha);
 
-
-            nomeEquipe.setText(elementos.get(position).getNome());
+        txtRanking.setText("# "+(position+1)+"º");
+        nomeEquipe.setText(elementos.get(position).getNome());
 
 
         return roview;

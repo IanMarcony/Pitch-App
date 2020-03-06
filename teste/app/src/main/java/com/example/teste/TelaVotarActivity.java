@@ -120,8 +120,8 @@ public class TelaVotarActivity extends Activity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                if(!(value<=0)){
-                    value -= 1000;
+                if(!(value<=0)||!(value-5000<0)){
+                    value -= 5000;
                     etValue.setText(""+value);
                 }
             }
@@ -131,8 +131,8 @@ public class TelaVotarActivity extends Activity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                if(!(value>=saldo)){
-                    value += 1000;
+                if(!(value>=saldo)||!(value+5000>saldo)){
+                    value += 5000;
                     etValue.setText(""+value);
                 }
             }

@@ -12,34 +12,31 @@
         android:layout_width="290dp"
         android:layout_height="66dp"
         android:layout_marginStart="69dp"
-        android:layout_marginLeft="69dp"
         android:layout_marginTop="121dp"
         android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
         android:background="@drawable/borda_list_top"
+        android:paddingStart="110dp"
         android:paddingLeft="110dp"
         android:paddingTop="10dp"
         android:text="@string/geralTXT"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/lista_equipes_geral_id"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:paddingStart="110dp" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ListView
         android:id="@+id/lista_equipes_geral_id"
         android:layout_width="290dp"
         android:layout_height="334dp"
         android:layout_marginStart="69dp"
-        android:layout_marginLeft="69dp"
         android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
         android:layout_marginBottom="210dp"
-        android:background="#B5DD8D"
+        android:background="#EBEBEB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView3"

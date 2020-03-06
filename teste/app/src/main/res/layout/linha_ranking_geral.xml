@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linha_voto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#7CB342"
+    android:layout_width="300dp"
+    android:layout_height="100dp"
+    android:background="#11000000"
     android:orientation="horizontal">
 
     <TextView
@@ -17,7 +17,22 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:text="NOME EQUIPE "
-        android:textColor="#FFFFFF"
-        android:textSize="18sp" />
+        android:textColor="#98AB40"
+        android:textFontWeight="800"
+        android:textSize="22sp"
+        android:textAllCaps="true"
+        android:layout_gravity="center_vertical"/>
+
+    <TextView
+        android:id="@+id/rankingLinha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="#0"
+        android:textAllCaps="true"
+        android:layout_marginEnd="30dp"
+        android:textColor="#98AB40"
+        android:textFontWeight="800"
+        android:textSize="24sp"
+        android:layout_gravity="center_vertical"/>
 
 </LinearLayout>
