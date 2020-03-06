@@ -36,7 +36,6 @@ public class TelaRankingMainActivity extends Activity {
     private TextView txtEquipe1, txtEquipe2, txtEquipe3,
             txtEquipe1p,txtEquipe2p,txtEquipe3p;
 
-    private int idEquipe1,idEquipe2,idEquipe3;
     public static ArrayList equipeArray;
     private Equipe equipe1,equipe2,equipe3;
 
@@ -68,30 +67,33 @@ public class TelaRankingMainActivity extends Activity {
 
 
         equipeArray = TelaVotacaoListaActivity.equipes;
-        if(equipeArray.size()>=3) {
+
             Collections.sort(equipeArray, new ComparadorEquipes());
 
 
 
-            if(equipeArray.size()>=1)equipe1 = (Equipe) equipeArray.get(0);
-            if(equipeArray.size()>=2)equipe2 = (Equipe) equipeArray.get(1);
-            if(equipeArray.size()>=3)equipe3 = (Equipe) equipeArray.get(2);
-
-
-            if(equipeArray.size()>=1)txtEquipe1.setText(equipe1.getNome());
-            if(equipeArray.size()>=2)txtEquipe2.setText(equipe2.getNome());
-            if(equipeArray.size()>=3)txtEquipe3.setText(equipe3.getNome());
-
-            if(equipeArray.size()>=1)pgEquipe1.setProgress(equipe1.getNumeroVoto());
-            if(equipeArray.size()>=2)pgEquipe2.setProgress(equipe2.getNumeroVoto());
-            if(equipeArray.size()>=3)pgEquipe3.setProgress(equipe3.getNumeroVoto());
-
-            if(equipeArray.size()>=1)txtEquipe1p.setText(pgEquipe1.getProgress() + "%");
-            if(equipeArray.size()>=2)txtEquipe2p.setText(pgEquipe2.getProgress() + "%");
-            if(equipeArray.size()>=3)txtEquipe3p.setText(pgEquipe3.getProgress() + "%");
-
-
+            if(equipeArray.contains( equipeArray.get(0))){
+                equipe1 = (Equipe) equipeArray.get(0);
+                txtEquipe1.setText(equipe1.getNome());
+                pgEquipe1.setProgress(equipe1.getNumeroVoto());
+                txtEquipe1p.setText(pgEquipe1.getProgress() + "%");
+            }
+        if(equipeArray.contains( equipeArray.get(1))){
+            equipe2 = (Equipe) equipeArray.get(1);
+            txtEquipe2.setText(equipe2.getNome());
+            pgEquipe2.setProgress(equipe2.getNumeroVoto());
+            txtEquipe2p.setText(pgEquipe2.getProgress() + "%");
         }
+        if(equipeArray.contains( equipeArray.get(2))){
+            equipe3 = (Equipe) equipeArray.get(2);
+            txtEquipe3.setText(equipe3.getNome());
+            pgEquipe3.setProgress(equipe3.getNumeroVoto());
+            txtEquipe3p.setText(pgEquipe3.getProgress() + "%");
+        }
+
+
+
+
         actions();
     }
 
@@ -101,9 +103,9 @@ public class TelaRankingMainActivity extends Activity {
 
 
 
-        if(equipeArray.size()>=1)txtEquipe1p.setText(pgEquipe1.getProgress()+"%");
-        if(equipeArray.size()>=2)txtEquipe2p.setText(pgEquipe2.getProgress()+"%");
-        if(equipeArray.size()>=3)txtEquipe3p.setText(pgEquipe3.getProgress()+"%");
+        if(equipeArray.contains( equipeArray.get(0)))pgEquipe1.setProgress(equipe1.getNumeroVoto());
+        if(equipeArray.contains( equipeArray.get(1)))pgEquipe2.setProgress(equipe2.getNumeroVoto());
+        if(equipeArray.contains( equipeArray.get(2)))pgEquipe3.setProgress(equipe3.getNumeroVoto());
 
     }
 

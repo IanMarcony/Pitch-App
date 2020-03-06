@@ -23,6 +23,7 @@ import java.util.Collections;
 
 import classesuteis.ComparadorEquipes;
 import classesuteis.Equipe;
+import classesuteis.EquipeAdapterRankingGeral;
 import classesuteis.EquipeAdpter;
 
 public class TelaRankingGeralActivity extends Activity {
@@ -41,7 +42,7 @@ public class TelaRankingGeralActivity extends Activity {
 
 
 
-        ArrayAdapter<Equipe> adapter = new EquipeAdpter(getApplicationContext(),equipes);
+        ArrayAdapter<Equipe> adapter = new EquipeAdapterRankingGeral(getApplicationContext(),equipes);
         listaEquipes.setAdapter(adapter);
         positionEquipe=0;
 

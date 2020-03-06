@@ -49,10 +49,12 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 user = new Usuario();
                 user.setRa(raField.getText().toString());
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();//Aponta pro Banco de dados
-                 DatabaseReference usuariosReference = databaseReference.child("Alunos");
+                final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();//Aponta pro Banco de dados
 
-                usuariosReference.addListenerForSingleValueEvent(new ValueEventListener() {
+
+
+
+                databaseReference.child("Alunos").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         boolean hasFound = false;
@@ -63,12 +65,6 @@ public class MainActivity extends Activity {
                                     user.setSaldo(Float.parseFloat(dataSnapshot.child("Aluno"+i).child("saldo").getValue().toString()));
                                     user.setPosicao(i);
                                     user.setLogado(true);
-                                    List<Equipe> e1 = new ArrayList<>();
-                                    for(DataSnapshot dados: dataSnapshot.child("Aluno"+i).child("equipesArray").getChildren()){
-                                        Equipe e = dados.getValue(Equipe.class);
-                                        e1.add(e);
-                                    }
-                                    user.setEquipesArray(e1);
                                     hasFound = true;
                                     if(user.isLogado()) {
                                         Toast.makeText(getApplicationContext(), "Acesso liberado", Toast.LENGTH_SHORT).show();

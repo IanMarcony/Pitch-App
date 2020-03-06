@@ -2,6 +2,7 @@ package com.example.teste;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import com.google.firebase.database.DataSnapshot;
@@ -35,12 +37,14 @@ public class TelaVotacaoListaActivity extends Activity {
     public static Usuario user_aux=MainActivity.user;
 
     private Button botaoAdicionar,botaoRanking,botaoLogout;
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.tela_votacao_lista);
         getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
+
         System.out.println("RA: "+user_aux.getRa());
         listaEquipes = findViewById(R.id.lista_equipes_geral_id);
         positionEquipe=0;
@@ -64,7 +68,7 @@ public class TelaVotacaoListaActivity extends Activity {
 
                     i++;
                 }
-
+                user_aux.setEquipesArray(equipes);
                 ArrayAdapter<Equipe> adapter = new EquipeAdpter(getApplicationContext(),equipes);
                 listaEquipes.setAdapter(adapter);
                 System.out.println("Finalizou oesquisa no bacpesqui");

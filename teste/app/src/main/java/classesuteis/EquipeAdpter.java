@@ -1,6 +1,7 @@
 package classesuteis;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,16 +10,24 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.teste.MainActivity;
 import com.example.teste.R;
 import com.example.teste.TelaVotacaoListaActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EquipeAdpter extends ArrayAdapter<Equipe> {
     private final Context context;
     private final ArrayList<Equipe> elementos;
-    private final Usuario  user = TelaVotacaoListaActivity.user_aux;
+    private final Usuario  user = MainActivity.user;
 
     public EquipeAdpter(Context context, ArrayList<Equipe> elementos){
         super(context, R.layout.linha,elementos);
@@ -36,20 +45,12 @@ public class EquipeAdpter extends ArrayAdapter<Equipe> {
         TableLayout linha = roview.findViewById(R.id.tabela_elementos_id);
         TextView investimento = (TextView)roview.findViewById(R.id.valor_investido_equipe_id);
 
-        if(!user.getEquipesArray().get(position).getNome().equals(elementos.get(position).getNome())) {
-            user.getEquipesArray().add(position,elementos.get(position));
-            nomeEquipe.setText(elementos.get(position).getNome());
-            votado_check.setImageResource(R.drawable.nao_votado);
-            rate.setImageResource(R.drawable.zero_estrelas);
-            linha.setBackgroundResource(R.color.check_1);
-            investimento.setText("R$ " + elementos.get(position).getValorInvestido());
-        }else{
             nomeEquipe.setText(elementos.get(position).getNome());
             votado_check.setImageResource(user.getEquipes(position).getImagemCheck());
             rate.setImageResource(user.getEquipes(position).getImagemRate());
-            linha.setBackgroundResource(R.color.check_2);
+            linha.setBackgroundResource(user.getEquipes(position).getRgbBackgroundRow());
             investimento.setText("R$ " + elementos.get(position).getValorInvestido());
-        }
+
         return roview;
 
     }

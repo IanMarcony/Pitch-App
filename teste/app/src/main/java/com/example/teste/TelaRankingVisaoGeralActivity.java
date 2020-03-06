@@ -1,6 +1,7 @@
 package com.example.teste;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 
 import classesuteis.Equipe;
 
-public class TelaRankingVisaoGeralActivity extends AppCompatActivity {
+public class TelaRankingVisaoGeralActivity extends Activity {
 
     private TextView txtMoney,txtQntVotos,txtRanking,txtInvestidor,txtNome;
 
@@ -43,7 +44,7 @@ public class TelaRankingVisaoGeralActivity extends AppCompatActivity {
         txtNome.setText(equipe.getNome());
         txtMoney.setText(String.valueOf(equipe.getValorInvestido()));
         txtQntVotos.setText(String.valueOf(equipe.getNumeroVoto()));
-        txtRanking.setText("# "+ equipe.getPositionRanking()+"º");
+        txtRanking.setText("# "+ (idEquipe+1)+"º");
         txtInvestidor.setText(equipe.getRaInvestidor());
     }
 }

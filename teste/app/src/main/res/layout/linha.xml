@@ -14,7 +14,7 @@
         android:background="#66FF8C00">
 
         <TableRow
-            android:layout_width="440dp"
+            android:layout_width="400dp"
             android:layout_height="match_parent">
 
             <TextView
