@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -40,7 +42,13 @@ public class TelaRankingMainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_ranking_main);
-        getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
+
+        Window window = this.getWindow();
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.statusBar));
+        window.setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
 
         botaoGeral = (Button)findViewById(R.id.botao_geral_id);
 

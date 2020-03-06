@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -35,7 +37,13 @@ public class TelaRankingGeralActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_ranking_geral);
-        getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
+
+        Window window = this.getWindow();
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.statusBar));
+        window.setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
 
         equipes=TelaRankingMainActivity.equipeArray;
         Collections.sort(equipes, new ComparadorEquipes());

@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +26,13 @@ public class TelaRankingVisaoGeralActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_ranking_visao_geral);
-        getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
+
+        Window window = this.getWindow();
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.statusBar));
+        window.setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
 
         txtNome = findViewById(R.id.nome_equipe_geral_id);
         txtMoney = findViewById(R.id.total_investido_id);
