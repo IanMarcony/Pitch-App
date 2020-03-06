@@ -28,16 +28,12 @@ import classesuteis.Equipe;
 import classesuteis.Usuario;
 
 public class TelaRankingMainActivity extends Activity {
-
-    private ProgressBar pgEquipe1,pgEquipe2,pgEquipe3;
-
     private Button botaoGeral;
-
-    private TextView txtEquipe1, txtEquipe2, txtEquipe3,
-            txtEquipe1p,txtEquipe2p,txtEquipe3p;
-
+    private ProgressBar pgEquipe1,pgEquipe2,pgEquipe3;
     public static ArrayList equipeArray;
     private Equipe equipe1,equipe2,equipe3;
+    private TextView txtEquipe1, txtEquipe2, txtEquipe3,
+            txtEquipe1p,txtEquipe2p,txtEquipe3p;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -46,7 +42,7 @@ public class TelaRankingMainActivity extends Activity {
         setContentView(R.layout.tela_ranking_main);
         getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
 
-        botaoGeral=(Button)findViewById(R.id.botao_geral_id);
+        botaoGeral = (Button)findViewById(R.id.botao_geral_id);
 
         txtEquipe1 = findViewById(R.id.textView7);
         txtEquipe1.setShadowLayer(2, 1, 1, Color.BLACK);
@@ -65,25 +61,23 @@ public class TelaRankingMainActivity extends Activity {
         pgEquipe2 = findViewById(R.id.equipe2_progressbar_id);
         pgEquipe3 = findViewById(R.id.equipe3_progressbar_id3);
 
-
         equipeArray = TelaVotacaoListaActivity.equipes;
+        Collections.sort(equipeArray, new ComparadorEquipes());
 
-            Collections.sort(equipeArray, new ComparadorEquipes());
+        if(equipeArray.contains( equipeArray.get(0))){
+            equipe1 = (Equipe) equipeArray.get(0);
+            txtEquipe1.setText(equipe1.getNome());
+            pgEquipe1.setProgress(equipe1.getNumeroVoto());
+            txtEquipe1p.setText(pgEquipe1.getProgress() + "%");
+        }
 
-
-
-            if(equipeArray.contains( equipeArray.get(0))){
-                equipe1 = (Equipe) equipeArray.get(0);
-                txtEquipe1.setText(equipe1.getNome());
-                pgEquipe1.setProgress(equipe1.getNumeroVoto());
-                txtEquipe1p.setText(pgEquipe1.getProgress() + "%");
-            }
         if(equipeArray.contains( equipeArray.get(1))){
             equipe2 = (Equipe) equipeArray.get(1);
             txtEquipe2.setText(equipe2.getNome());
             pgEquipe2.setProgress(equipe2.getNumeroVoto());
             txtEquipe2p.setText(pgEquipe2.getProgress() + "%");
         }
+
         if(equipeArray.contains( equipeArray.get(2))){
             equipe3 = (Equipe) equipeArray.get(2);
             txtEquipe3.setText(equipe3.getNome());
@@ -91,9 +85,7 @@ public class TelaRankingMainActivity extends Activity {
             txtEquipe3p.setText(pgEquipe3.getProgress() + "%");
         }
 
-
-
-
+        //Buttons action
         actions();
     }
 
@@ -101,22 +93,18 @@ public class TelaRankingMainActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-
-
         if(equipeArray.contains( equipeArray.get(0)))pgEquipe1.setProgress(equipe1.getNumeroVoto());
         if(equipeArray.contains( equipeArray.get(1)))pgEquipe2.setProgress(equipe2.getNumeroVoto());
         if(equipeArray.contains( equipeArray.get(2)))pgEquipe3.setProgress(equipe3.getNumeroVoto());
-
     }
 
     public void actions(){
         botaoGeral.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(TelaRankingMainActivity.this,TelaRankingGeralActivity.class);
-                startActivity(intent);
+            Intent intent = new Intent(TelaRankingMainActivity.this,TelaRankingGeralActivity.class);
+            startActivity(intent);
             }
         });
     }
-
 }

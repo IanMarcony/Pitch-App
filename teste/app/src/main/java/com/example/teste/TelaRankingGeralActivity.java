@@ -30,34 +30,31 @@ public class TelaRankingGeralActivity extends Activity {
     private ListView listaEquipes;
     public static ArrayList<Equipe> equipes;
     public static int positionEquipe;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_ranking_geral);
         getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.tranparente));
+
         equipes=TelaRankingMainActivity.equipeArray;
-        listaEquipes =(ListView)findViewById(R.id.lista_equipes_geral_id);
+        Collections.sort(equipes, new ComparadorEquipes());
 
-                Collections.sort(equipes, new ComparadorEquipes());
-
-
+        listaEquipes = (ListView)findViewById(R.id.lista_equipes_geral_id);
 
         ArrayAdapter<Equipe> adapter = new EquipeAdapterRankingGeral(getApplicationContext(),equipes);
         listaEquipes.setAdapter(adapter);
-        positionEquipe=0;
-
+        positionEquipe = 0;
 
         listaEquipes.setLongClickable(true);
         listaEquipes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(TelaRankingGeralActivity.this,TelaRankingVisaoGeralActivity.class);
-                positionEquipe=position;
-                startActivity(intent);
-                return true;
+            Intent intent = new Intent(TelaRankingGeralActivity.this,TelaRankingVisaoGeralActivity.class);
+            positionEquipe = position;
+            startActivity(intent);
+            return true;
             }
         });
     }
-
-
 }

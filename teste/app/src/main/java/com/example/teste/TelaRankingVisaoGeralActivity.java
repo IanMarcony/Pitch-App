@@ -14,13 +14,9 @@ import java.util.ArrayList;
 import classesuteis.Equipe;
 
 public class TelaRankingVisaoGeralActivity extends Activity {
-
     private TextView txtMoney,txtQntVotos,txtRanking,txtInvestidor,txtNome;
-
     private int idEquipe;
-
     private ArrayList equipeArray;
-
     private Equipe equipe;
 
     @SuppressLint("SetTextI18n")
@@ -36,7 +32,6 @@ public class TelaRankingVisaoGeralActivity extends Activity {
         txtRanking = findViewById(R.id.posicao_ranking_id);
         txtInvestidor = findViewById(R.id.maior_investidor_id);
 
-
         equipeArray = TelaRankingGeralActivity.equipes;
         idEquipe = TelaRankingGeralActivity.positionEquipe;
         equipe = (Equipe) equipeArray.get(idEquipe);
@@ -44,7 +39,7 @@ public class TelaRankingVisaoGeralActivity extends Activity {
         txtNome.setText(equipe.getNome());
         txtMoney.setText(String.valueOf(equipe.getValorInvestido()));
         txtQntVotos.setText(String.valueOf(equipe.getNumeroVoto()));
-        txtRanking.setText("# "+ (idEquipe+1)+"º");
+        txtRanking.setText("# " + (idEquipe + 1) + "º");
         txtInvestidor.setText(equipe.getRaInvestidor());
     }
 }

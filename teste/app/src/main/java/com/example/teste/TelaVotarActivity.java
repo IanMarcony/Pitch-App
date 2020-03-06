@@ -29,7 +29,6 @@ import classesuteis.Equipe;
 import classesuteis.Usuario;
 
 public class TelaVotarActivity extends Activity {
-
     private Button btDecrease,btIncrement,btSubmit;
     private SeekBar rateBar;
     private ImageView stars;
@@ -43,6 +42,7 @@ public class TelaVotarActivity extends Activity {
     private Equipe equipe;
     private Usuario user = TelaVotacaoListaActivity.user_aux;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +52,10 @@ public class TelaVotarActivity extends Activity {
         btDecrease = findViewById(R.id.botao_decrementar_id);
         btIncrement = findViewById(R.id.botao_acrescentar_id);
         btSubmit = findViewById(R.id.botao_submeter_voto_id);
-        etValue=findViewById(R.id.valor_investir_id);
-        etValue.setText(""+user.getSaldo());
+        etValue = findViewById(R.id.valor_investir_id);
+        etValue.setText("" + user.getSaldo());
+
         teamName = findViewById(R.id.textView);
-
-
         stars = findViewById(R.id.rate_equipe_ind_id);
 
         rateBar = findViewById(R.id.rate_voto_id);
@@ -65,16 +64,13 @@ public class TelaVotarActivity extends Activity {
         saldo = user.getSaldo();
         value = saldo;
 
-        etValue.setText(""+value);
-
-
+        etValue.setText("" + value);
 
         equipeArray = TelaVotacaoListaActivity.equipes;
         idEquipe =TelaVotacaoListaActivity.positionEquipe;
 
         equipe = (Equipe) equipeArray.get(idEquipe);
         teamName.setText(equipe.getNome());
-
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -83,6 +79,7 @@ public class TelaVotarActivity extends Activity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot dados : dataSnapshot.getChildren()){
                     Equipe e = dados.getValue(Equipe.class);
+                    assert e != null;
                     if(e.getIdEquipe()==equipe.getIdEquipe()) {
                         equipe.setValorInvestido(e.getValorInvestido());
                         equipe.setNumeroVoto(e.getNumeroVoto());
@@ -92,38 +89,23 @@ public class TelaVotarActivity extends Activity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
 
+        //Buttons actions
         actions();
     }
 
     public void actions(){
-//        etValue.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-//
-//            @Override
-//            @SuppressLint("SetTextI18n")
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                value = Float.parseFloat(etValue.getText().toString());
-//                etValue.setText(""+value);
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {}
-//        });
 
         btDecrease.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                if(!(value<=0)||!(value-5000<0)){
-                    value -= 5000;
-                    etValue.setText(""+value);
-                }
+            if(!(value <= 0)||!(value-5000 < 0)){
+                value -= 5000;
+                etValue.setText(""+value);
+            }
             }
         });
 
@@ -131,10 +113,10 @@ public class TelaVotarActivity extends Activity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
-                if(!(value>=saldo)||!(value+5000>saldo)){
-                    value += 5000;
-                    etValue.setText(""+value);
-                }
+            if(!(value>=saldo)||!(value+5000>saldo)){
+                value += 5000;
+                etValue.setText(""+value);
+            }
             }
         });
 
@@ -143,7 +125,7 @@ public class TelaVotarActivity extends Activity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 rate = rateBar.getProgress();
 
-                switch (rateBar.getProgress()){
+                switch (rate){
                     case 1:
                         stars.setImageResource(R.drawable.uma_estrela_votacao);
                         break;
@@ -171,47 +153,42 @@ public class TelaVotarActivity extends Activity {
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
         btSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //setar doacao
+
+                //Set donation
                 equipe.giveDonation(user.getRa(),value);
-                //setar votos atuais
+
+                //Set actual vote
                 equipe.setNumeroVoto(equipe.getNumeroVoto()+rate);
 
-                //setar saldo user
+                //Set user balance
                 user.setSaldo(saldo-value);
 
+                //Set voted team
                 user.getEquipes(idEquipe).setImagemRate(rate);
                 user.getEquipes(idEquipe).setImagemCheck(1);
                 user.getEquipes(idEquipe).setRgbBackgroundRow(1);
-                //setar rate
 
-
-                //confirmar voto
-
-//                user.setVotos(rate,idEquipe);
-
-                //firebase
+                //Firebase CRUD
                 try{
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
                     databaseReference.child("Equipes").child("Equipe"+(idEquipe+1)).setValue(equipe);
-                        DatabaseReference usuarioReference = FirebaseDatabase.getInstance().getReference("Alunos");
-                        usuarioReference.child("Aluno"+MainActivity.user.getPosicao()).setValue(user);
+
+                    DatabaseReference usuarioReference = FirebaseDatabase.getInstance().getReference("Alunos");
+                    usuarioReference.child("Aluno"+MainActivity.user.getPosicao()).setValue(user);
 
                     Intent intent = new Intent(TelaVotarActivity.this,TelaVotacaoListaActivity.class);
                     startActivity(intent);
                     finish();
+
                 }catch (Exception err){
                     Toast.makeText(getApplicationContext(),err.getMessage(),Toast.LENGTH_SHORT).show();
                 }
